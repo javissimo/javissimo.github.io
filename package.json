@@ -1,7 +1,8 @@
 {
   "name": "notiz",
   "version": "0.2.0",
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Gary Großgarten",
       "url": "https://notiz.dev/authors/gary-grossgarten"
     },

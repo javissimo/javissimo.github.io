@@ -8,45 +8,27 @@ import './projects/banner-generator';
 import './projects/amp';
 import { getSitemapPlugin } from '@gammastream/scully-plugin-sitemap';
 
-const defaultPostRenderers = [
-  'fouc',
-  'seoHrefOptimise',
-  'lazyImages',
-  'mediumZoom',
-  'copyStaticContent',
-];
+const defaultPostRenderers = ['fouc', 'seoHrefOptimise', 'lazyImages', 'copyStaticContent'];
 
 const SitemapPlugin = getSitemapPlugin();
 setPluginConfig(SitemapPlugin, {
   urlPrefix: 'https://notiz.dev',
   sitemapFilename: 'sitemap.xml',
   changeFreq: 'weekly',
-  priority: [
-    '1.0',
-    '0.9',
-    '0.8',
-    '0.7',
-    '0.6',
-    '0.5',
-    '0.4',
-    '0.3',
-    '0.2',
-    '0.1',
-    '0.0',
-  ],
+  priority: ['1.0', '0.9', '0.8', '0.7', '0.6', '0.5', '0.4', '0.3', '0.2', '0.1', '0.0'],
   ignoredRoutes: ['/404', '/confirm-subscription', '/unsubscribe'],
   routes: {
     '/blog/:slug': {
       changeFreq: 'daily',
       priority: '0.9',
-      sitemapFilename: 'sitemap-blog.xml',
+      sitemapFilename: 'sitemap-blog.xml'
     },
     '/tags/:slug': {
       changeFreq: 'daily',
       priority: '0.9',
-      sitemapFilename: 'sitemap-tags.xml',
-    },
-  },
+      sitemapFilename: 'sitemap-tags.xml'
+    }
+  }
 });
 
 export const config: ScullyConfig = {
@@ -58,21 +40,21 @@ export const config: ScullyConfig = {
     '/blog/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './content/blog',
+        folder: './content/blog'
       },
-      postRenderers: [...defaultPostRenderers, 'amp', 'rss', 'bannerGenerator'],
+      postRenderers: [...defaultPostRenderers, 'amp', 'rss', 'bannerGenerator']
     },
     '/tags/:slug': {
       type: 'contentFolder',
       slug: {
-        folder: './content/tags',
-      },
+        folder: './content/tags'
+      }
     },
-    '/about/:slug': {
+    '/about/': {
       type: 'contentFolder',
       slug: {
-        folder: './content/about',
-      },
-    },
-  },
+        folder: './content/about'
+      }
+    }
+  }
 };
