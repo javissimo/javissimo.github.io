@@ -3,7 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url: 'https://javier.pm',
+  title: 'javier.pm',
+  description:
+    'Weeklyish articles about Angular, Nestjs, Web Components, and more things related to web development.',
+  featureImage: 'assets/img/featured.png',
+  keywords: [
+    'notiz',
+    'notiz.dev',
+    'Angular',
+    'Nestjs',
+    'Web Components',
+    'Scully'
+  ]
 };
 
 /*

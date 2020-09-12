@@ -1,0 +1,8 @@
+{
+    "svg.preview.background": "transparent",
+    "scss.validate": false,
+    "stylelint.enable": true,
+    "staticWebApps.appSubpath": "/",
+    "staticWebApps.apiSubpath": "",
+    "staticWebApps.appArtifactSubpath": "dist/static", // Enable sytlelint
+}

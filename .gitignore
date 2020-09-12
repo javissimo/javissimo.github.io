@@ -9,6 +9,7 @@
 
 # dependencies
 /node_modules
+**/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -44,3 +45,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# firebase
+.firebase/
+firebase-debug.log
+
+src/assets/scully-routes.json
+
+scully.notiz.config.js
+
+scully.log
