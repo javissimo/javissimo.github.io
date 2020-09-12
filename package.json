@@ -20,7 +20,6 @@
     "dev": "npm run build && npm run scully && npm run scully:serve",
     "build:scully": "npm run build:prod && npm run scully",
     "build:design": "ng build --project design --prod",
-    "build:shortcodes": "ng build --prod --project shortcodes --single-bundle --output-hashing none",
     "fix": "eslint . --ext .ts --quiet --fix",
     "lint": "eslint . --ext .ts",
     "e2e": "ng e2e",
