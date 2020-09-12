@@ -1,0 +1,417 @@
+<!DOCTYPE html><html ⚡="" lang="en"><head>
+    <meta charset="utf-8">
+    <script async="" src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Writing a Selenium framework step by step</title>
+    <link rel="canonical" href="https://notiz.dev/blog/angular-10-with-tailwindcss">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "TechArticle",
+      "headline": "Writing a Selenium framework step by step",
+      "datePublished": "2020-07-13T08:55:00.000Z",
+      "image": ["https://notiz.dev/assets/banners/blog/angular-10-with-tailwindcss/og.png"]
+    }
+    </script>
+    <script async="" custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <style amp-custom="">
+      @media (prefers-color-scheme: dark) {
+        body {
+          --ion-color-primary: #55b9f3;
+          --ion-color-light: #fff;
+          --ion-color-dark: #222428;
+          --ion-background-color: #121212;
+          --ion-text-color: #ffffff;
+          --ion-item-background: #1a1b1e;
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        body {
+          --ion-color-primary: #55f3de;
+          --ion-color-light: #f4f5f8;
+          --ion-color-dark: #222428;
+          --ion-background-color: #fff;
+          --ion-text-color: #121212;
+          --ion-item-background: #1a1b1e;
+        }
+      }
+      body {
+        --ion-color-secondary: #55f3de;
+        --ion-color-tertiary: #556af3;
+        --ion-color-success: #2fdf75;
+        --ion-color-warning: #ffd534;
+        --ion-color-danger: #ff4961;
+        --gradient: linear-gradient(
+          145deg,
+          var(--ion-color-secondary),
+          var(--ion-color-primary),
+          var(--ion-color-tertiary)
+        );
+        background: var(--ion-background-color);
+        color: var(--ion-text-color);
+        font-family: Muli;
+        max-width: 960px;
+      }
+      .content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      a,
+      li:before {
+        color: var(--ion-color-secondary);
+      }
+
+      h2 {
+        color: var(--ion-color-primary-tint);
+      }
+
+      pre {
+        border-radius: 16px;
+        background: var(--ion-item-background);
+        box-shadow: inset 22px 22px 44px #16171a, inset -22px -22px 44px #1e1f23;
+      }
+
+      p code {
+        color: #ffe9cd;
+      }
+      header {
+        height: 84px;
+        display: flex;
+        align-items: center;
+        padding-left: 8px;
+      }
+
+      footer {
+        height: 84px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .fixed-container {
+        position: relative;
+        width: 100%;
+        height: 200px;
+      }
+
+      .banner-container {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        margin-bottom: 40px;
+      }
+      amp-img.contain img {
+        object-fit: contain;
+      }
+      p code {
+        padding: 0px 6px;
+        border-radius: 0.2rem;
+      }
+
+      ul {
+        list-style: none; /* Remove default bullets */
+      }
+
+      ul li::before {
+        content: '\2022'; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        font-weight: bold; /* If you want it to be bold */
+        display: inline-block; /* Needed to add space between the bullet and the text */
+        width: 1em; /* Also needed for space (tweak if needed) */
+        margin-left: -1em; /* Also needed for space (tweak if needed) */
+      }
+
+      ol {
+        list-style: none;
+        counter-reset: li;
+      }
+      ol li::before {
+        content: counter(li) '. ';
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+      ol li {
+        counter-increment: li;
+      }
+
+      p,
+      a {
+        font-size: 1.18rem;
+      }
+      p,
+      pre {
+        margin: 0 0 1.5rem;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-top: 42px;
+      }
+
+      @media (min-width: 420px) {
+        .banner-container {
+          height: 340px;
+        }
+      }
+
+      @media (min-width: 670px) {
+        .banner-container {
+          height: 420px;
+        }
+      }
+      @media (min-width: 1000px) {
+        body {
+          padding-left: 40px;
+        }
+      }
+      @media (min-width: 1200px) {
+        body {
+          padding-left: 140px;
+        }
+      }
+      @media (min-width: 1400px) {
+        body {
+          padding-left: 240px;
+        }
+      }
+    </style>
+    <style amp-boilerplate="">body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate="">body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <meta name="generator" content="Scully 1.0.0-beta.6"><meta name="theme-color" content="#55b9f3"><meta name="description" content="Learn how to style Angular applications with Tailwind CSS"><meta name="robots" content="index, follow"><meta name="keywords" content="notiz, notiz.dev, Angular, Nestjs, Web Components, Scully, Angular, Tailwind CSS, CSS, Utility-First CSS"><meta property="og:title" content="Writing a Selenium framework step by step"><meta property="og:description" content="Learn how to style Angular applications with Tailwind CSS"><meta property="og:type" content="article"><meta property="og:url" content="https://javier.pm/blog/angular-10-with-tailwindcss"><meta property="og:image" content="https://notiz.dev/assets/banners/blog/angular-10-with-tailwindcss/og.png"><meta property="og:image:alt" content="Learn how to style Angular applications with Tailwind CSS"><meta property="og:site_name" content="javier"><meta property="og:locale" content="en_US"><meta property="og:article:published_time" content="2020-07-13T08:55:00.000Z"><meta property="og:article:modified_time" content="2020-07-14T16:50:00.000Z"><meta property="og:article:tag" content="Angular, Tailwind CSS, CSS"><meta property="og:article:author" content=""><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@notiz_dev"><meta name="twitter:title" content="Writing a Selenium framework step by step"><meta name="twitter:description" content="Learn how to style Angular applications with Tailwind CSS"><meta name="twitter:image" content="https://notiz.dev/assets/banners/blog/angular-10-with-tailwindcss/twitter.png"></head>
+  <body>
+    <header class="headerbar">
+      <a name="go to full page" class="logo" href="https://notiz.dev/blog/angular-10-with-tailwindcss">
+        <amp-img alt="notiz.dev logo" class="home-button" src="https://notiz.dev/assets/img/logo-text.svg" width="120" height="44"></amp-img>
+      </a>
+    </header>
+    <div class="banner-container">
+      <amp-img alt="article banner" class="contain og-image" src="https://notiz.dev/assets/banners/blog/angular-10-with-tailwindcss/og.png" layout="fill"></amp-img>
+    </div>
+    <div class="content"><p>Learn how to use utility-first CSS framework <a href="https://tailwindcss.com">Tailwind CSS</a> with <a href="https://angular.io/">Angular</a> using <a href="https://github.com/manfredsteyer/ngx-build-plus">ngx-build-plus</a>.</p>
+<h2 id="angularproject">Angular Project</h2>
+<p>You need the <a href="https://cli.angular.io/">Angular CLI</a> to create a new Angular project.</p>
+<pre><code class="bash language-bash">ng new app-name --style=scss
+cd app-name
+</code></pre>
+<p>Follow the instruction to manually configure Angular w/ Tailwind 🍬🍫🍪 or jump directly to the <a href="blog/angular-10-with-tailwindcss#shortcut-aka-angular-schematics">shortcut</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>Start by adding dependencies for Tailwind, Postcss and ngx-build-plus for angular.</p>
+<pre><code class="bash language-bash">npm i -D tailwindcss postcss-import postcss-loader postcss-scss
+
+ng add ngx-build-plus
+</code></pre>
+<p>Create a <strong>webpack.config.js</strong> in your root folder to configure Postcss with Tailwind.</p>
+<pre><code class="bash language-bash">touch webpack.config.js
+</code></pre>
+<blockquote>
+  <p><strong>Note</strong>: <code>autoprefixer</code> is provided by the Angular CLI</p>
+</blockquote>
+<pre><code class="js language-js">module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        loader: 'postcss-loader',
+        options: {
+          ident: 'postcss',
+          syntax: 'postcss-scss',
+          plugins: () =&gt; [
+            require('postcss-import'),
+            require('tailwindcss'),
+            require('autoprefixer'),
+          ],
+        },
+      },
+    ],
+  },
+};
+</code></pre>
+<p>Now open <strong>angular.json</strong> file to apply the extra webpack config to generate Tailwind styles during <code>ng build</code>, <code>ng serve</code> and <code>ng test</code>. If you used the schematics <code>ng add ngx-build-plus</code> it automatically replaces <code>@angular-devkit/build-angular</code> with <code>ngx-build-plus</code> in your <code>angular.json</code>. Additionally, add the <code>extraWebpackConfig</code> to each build step. In the end your <strong>angular.json</strong> should look like this:</p>
+<pre><code class="diff language-diff">"architect": {
+  "build": {
+-   "builder": "@angular-devkit/build-angular:browser",
++   "builder": "ngx-build-plus:browser",
+    "options": {
++     "extraWebpackConfig": "webpack.config.js",
+      ...
+    }
+    ...
+  },
+  "serve": {
+-   "builder": "@angular-devkit/build-angular:dev-server",
++   "builder": "ngx-build-plus:dev-server",
+    "options": {
++     "extraWebpackConfig": "webpack.config.js",
+      ...
+    }
+    ...
+  },
+  "test": {
+-   "builder": "@angular-devkit/build-angular:karma",
++   "builder": "ngx-build-plus:karma",
+    "options": {
++     "extraWebpackConfig": "webpack.config.js",
+      ...
+    }
+    ...
+  },
+</code></pre>
+<p>Perfect, now it's time to generate the Tailwind config <code>npx tailwindcss init</code> or for full config <code>npx tailwindcss init --full</code>. Almost there. Add Tailwind base styles to your <code>src/styles.scss</code> file</p>
+<pre><code class="css language-css">@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+</code></pre>
+<p>Now go ahead serve your app, you are ready to style 🎨 your Angular app with Tailwind utility classes.</p>
+<p>… wait a moment, we need to purge the unused CSS styles from Tailwind.</p>
+<h2 id="removeunusedcssstyles">Remove unused CSS Styles</h2>
+<p>We can use the new <a href="https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css">purge</a> option in <strong>tailwind.config.js</strong>.</p>
+<pre><code class="js language-js">module.exports = {
+  purge: ['./src/**/*.html', './src/**/*.ts'],
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [],
+};
+</code></pre>
+<p>Unused styles are removed by Tailwind when you run your build with <code>NODE_ENV</code> set to <code>production</code>. Add <code>"build:prod": "NODE_ENV=production ng build --prod",</code> to your scripts in <strong>package.json</strong>. Now run <code>npm run build:prod</code> for a production build <strong>only</strong> with used Tailwind styles.</p>
+<h2 id="cssinsteadofscss">CSS instead of SCSS</h2>
+<p>Using CSS instead of SCSS? No problem. You don't need to install <code>postcss-scss</code>.</p>
+<pre><code class="bash language-bash">npm i -D tailwindcss postcss-import postcss-loader 
+
+ng add ngx-build-plus
+</code></pre>
+<p>Update also your <code>webpack.config.js</code>:</p>
+<pre><code class="js language-js">module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loader: "postcss-loader",
+        options: {
+          ident: "postcss",
+          syntax: "postcss",
+          plugins: () =&gt; [
+            require("postcss-import"),
+            require("tailwindcss"),
+            require("autoprefixer"),
+          ],
+        },
+      },
+    ],
+  },
+};
+</code></pre>
+<p>Finally add Tailwind base styles to <code>src/styles.css</code>.</p>
+<pre><code class="css language-css">@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+</code></pre>
+<h2 id="shortcutakaangularschematics">Shortcut aka Angular Schematics</h2>
+<p>If you also think the steps above are tedious … Don't look any further.</p>
+<p>Angular Schematics 💪 to the rescue. <a href="https://notiz.dev/authors/gary-grossgarten">Gary</a> created a <a href="https://github.com/garygrossgarten/ngx-tailwind">schematic</a> to add Tailwind to an Angular project. Simply run the schematic to automatically configure Tailwind:</p>
+<pre><code class="bash language-bash">ng add @garygrossgarten/ngx-tailwind
+</code></pre>
+<h2 id="usetailwindcssutilityclasses">Use Tailwind CSS utility classes</h2>
+<p>Now go crazy with Tailwind's CSS utility classes in your Angular app.</p>
+<p>Add them to your HTML template <code>class</code>, <code>[class.hover:...]="true"</code> or use them with <code>ngClass</code> </p>
+<pre><code class="html language-html">&lt;span class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white" [class.hover:bg-red-700]="hoverMe"&gt;
+  #angular
+&lt;/span&gt;
+</code></pre>
+<p>Add it to your stylesheet</p>
+<pre><code class="css language-css">span {
+  @apply inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white;
+} 
+
+span:hover {
+  @apply bg-red-700;
+} 
+</code></pre>
+<blockquote>
+  <p><strong>Note</strong>: @apply is not compiled when using it in an Angular library due to <a href="https://github.com/ng-packagr/ng-packagr/issues/1471">missing support for postcss</a> of ng-packagr</p>
+</blockquote>
+<p>Or use <code>@HostBinding</code> in your <code>*.ts</code> files</p>
+<pre><code class="ts language-ts">@HostBinding('class')
+get classes() {
+  return 'bg-red-500 px-4';
+}
+
+@HostBinding('class.hidden')
+get classes() {
+  return this.isHidden;
+}
+</code></pre>
+<p>Add the following snippet to your <code>src/app.component.html</code> to see if Tailwind styles the following card. (Don't worry about the picture its random)</p>
+<p></p><div class="fixed-container"><amp-img class="contain" src="https://notiz.dev/assets/img/blog/angular-10-with-tailwindcss/optimized/angular-tailwind-card.png" alt="Angular Tailwind Card" layout="fill"></amp-img></div><p></p>
+<pre><code class="html language-html">&lt;div class="max-w-sm mx-auto mt-10 rounded overflow-hidden shadow-lg space-y-4"&gt;
+  &lt;img
+    class="h-64 w-full object-cover object-center"
+    src="https://source.unsplash.com/random"
+    alt="Random unsplash photo"
+  /&gt;
+  &lt;div class="px-6"&gt;
+    &lt;div class="font-bold text-xl"&gt;Angular w/ Tailwind&lt;/div&gt;
+    &lt;p class="text-gray-700 text-base"&gt;
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+      quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+      nihil.
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="px-6 pb-4 space-x-2"&gt;
+    &lt;a
+      href="https://angular.io"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white hover:bg-red-700"
+    &gt;
+      #angular
+    &lt;/a&gt;
+    &lt;a
+      href="https://tailwindcss.com"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-block bg-indigo-500 rounded-full px-3 py-1 text-sm font-semibold text-white hover:bg-indigo-700"
+    &gt;
+      #tailwind
+    &lt;/a&gt;
+    &lt;a
+      href="https://notiz.dev"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 hover:bg-blue-400"
+    &gt;
+      #notiz
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In the next post you will create an Angular component for a floating form field based on my last post <a href="https://notiz.dev/blog/floating-form-field-with-tailwindcss">Floating Form Field with Tailwind CSS</a>.</p></div>
+    <footer>
+      <a class="more" href="https://notiz.dev/blog/angular-10-with-tailwindcss">See related articles</a>
+    </footer>
+    <amp-analytics type="googleanalytics">
+        <script type="application/json">
+        {
+          "vars": {
+            "account": "UA-56561079-5"
+          },
+          "triggers": {
+            "default pageview": {
+              "on": "visible",
+              "request": "pageview"
+            }
+          }
+        }
+        </script>
+        </amp-analytics>
+  
+
+
+
+</body></html>
