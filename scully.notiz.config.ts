@@ -50,7 +50,7 @@ export const config: ScullyConfig = {
         folder: './content/tags'
       }
     },
-    '/:slug': {
+    '/about/:slug': {
       type: 'contentFolder',
       slug: {
         folder: './content/about'

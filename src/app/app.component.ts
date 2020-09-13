@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         },
         {
           title: 'about me',
-          url: '/about/',
+          url: '/about/me',
           svg: 'assets/img/author.svg'
         },
         {

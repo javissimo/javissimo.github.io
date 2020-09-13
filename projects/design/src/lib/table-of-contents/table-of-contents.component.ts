@@ -1,21 +1,15 @@
 import { ScullyContentService } from '@services/scully-content.service';
-import {
-  Component,
-  OnInit,
-  Inject,
-  OnDestroy,
-  HostBinding,
-} from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, HostBinding } from '@angular/core';
 import { DOCUMENT, Location } from '@angular/common';
 import { fromEvent, Subject, Observable, merge } from 'rxjs';
-import { tap, map, takeUntil, switchMap, withLatestFrom } from 'rxjs/operators';
+import { tap, map, takeUntil, switchMap } from 'rxjs/operators';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'niz-toc',
   templateUrl: './table-of-contents.component.html',
-  styleUrls: ['./table-of-contents.component.scss'],
+  styleUrls: ['./table-of-contents.component.scss']
 })
 export class TableOfContentsComponent implements OnInit, OnDestroy {
   onDestroy$ = new Subject();
@@ -35,17 +29,13 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.headers$ = fromEvent(window, 'AngularReady').pipe(
-      map((ev) =>
-        Array.from(this.document.querySelectorAll('.post h2,.post h3'))
-      )
+      map(() => Array.from(this.document.querySelectorAll('.post h2,.post h3')))
     );
 
     fromEvent(window, 'AngularReady')
       .pipe(
-        switchMap((ev) => this.route.fragment),
-        switchMap((fragment) =>
-          this.content.getCurrent().pipe(map((c) => [fragment, c.route]))
-        ),
+        switchMap(() => this.route.fragment),
+        switchMap((fragment) => this.content.getCurrent().pipe(map((c) => [fragment, c.route]))),
         tap(([fragment, route]) => this.scrollTo(route, fragment)),
         takeUntil(this.onDestroy$)
       )
@@ -54,9 +44,7 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     const isVisible = (element: Element) => {
       const subject = new Subject<Element>();
       const observer = new IntersectionObserver((entries) => {
-        entries
-          .filter((entry) => entry.isIntersecting)
-          .forEach((e) => subject.next(element));
+        entries.filter((entry) => entry.isIntersecting).forEach((e) => subject.next(element));
       });
       observer.observe(element);
 
@@ -74,9 +62,7 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     this.headers$
       .pipe(
         switchMap((headers) => merge(...headers.map((h) => isVisible(h)))),
-        switchMap((el) =>
-          this.content.getCurrent().pipe(map((c) => [el.id, c.route]))
-        ),
+        switchMap((el) => this.content.getCurrent().pipe(map((c) => [el.id, c.route]))),
         tap(([el, route]) => this.location.replaceState(`${route}#${el}`)),
         takeUntil(this.onDestroy$)
       )
@@ -88,9 +74,7 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
           merge(
             ...anchors.map((a) =>
               fromEvent(a, 'click').pipe(
-                switchMap((ev) =>
-                  this.content.getCurrent().pipe(map((c) => [a.id, c.route]))
-                )
+                switchMap((ev) => this.content.getCurrent().pipe(map((c) => [a.id, c.route])))
               )
             )
           )
@@ -106,24 +90,22 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  scrollTo(url: string, id: string) {
+  scrollTo(url: string, id: string): void {
     this.location.replaceState(`${url}#${id}`);
     this.document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  active(url: string, id: string) {
+  active(url: string, id: string): string {
     return this.location.path(true) === `${url}#${id}` ? 'active' : '';
   }
 
-  scrollToTop(url: string) {
+  scrollToTop(url: string): void {
     this.location.replaceState(`${url}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  scrollToRelated() {
-    const stack = Array.from(
-      this.document.getElementsByTagName('app-card-stack')
-    )[0];
+  scrollToRelated(): void {
+    const stack = Array.from(this.document.getElementsByTagName('app-card-stack'))[0];
     stack?.scrollIntoView({ behavior: 'smooth' });
   }
 
