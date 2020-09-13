@@ -104,11 +104,6 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  scrollToRelated(): void {
-    const stack = Array.from(this.document.getElementsByTagName('app-card-stack'))[0];
-    stack?.scrollIntoView({ behavior: 'smooth' });
-  }
-
   headerClasses(header: string): string {
     if (header === 'h2') {
       return 'text-lg text-semibold';
