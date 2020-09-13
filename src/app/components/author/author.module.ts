@@ -12,9 +12,9 @@ import { AuthorComponent } from './author.component';
     RouterModule,
     MarkdownModule.forChild(),
     NizChipModule,
-    NizInlineSvgModule,
+    NizInlineSvgModule
   ],
   exports: [AuthorComponent],
-  providers: [],
+  providers: []
 })
 export class AuthorCardModule {}

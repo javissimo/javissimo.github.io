@@ -7,18 +7,11 @@ import {
   ElementRef,
   HostListener,
   ViewChildren,
-  QueryList,
+  QueryList
 } from '@angular/core';
 import { shortcut, sequence } from '@utils/shortcuts';
 import { KeyCode } from '@utils/keycodes';
-import {
-  tap,
-  filter,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  map,
-} from 'rxjs/operators';
+import { tap, filter, debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Subject, merge } from 'rxjs';
 import { SearchPipe } from '@pipes/search.pipe';
@@ -27,7 +20,7 @@ import { GoogleAnalyticsService } from '@services/google-analytics.service';
 @Component({
   selector: 'niz-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['./search.component.scss']
 })
 export class NizSearch implements OnInit {
   search = '';
@@ -37,9 +30,7 @@ export class NizSearch implements OnInit {
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
   searchChanged = new Subject<string>();
 
-  @ViewChildren('searchItem') searchItems: QueryList<
-    ElementRef<HTMLUListElement>
-  >;
+  @ViewChildren('searchItem') searchItems: QueryList<ElementRef<HTMLUListElement>>;
 
   searchResult: SearchItem[] = [];
 
@@ -68,10 +59,7 @@ export class NizSearch implements OnInit {
   @HostListener('document:keydown.arrowDown', ['$event'])
   keyDown(event: KeyboardEvent) {
     if (this.isOpen) {
-      this.activeIndex = Math.min(
-        this.searchResult.length - 1,
-        this.activeIndex + 1
-      );
+      this.activeIndex = Math.min(this.searchResult.length - 1, this.activeIndex + 1);
 
       this.scrollSearchItemIntoView();
     }
@@ -92,14 +80,10 @@ export class NizSearch implements OnInit {
         debounceTime(250),
         distinctUntilChanged(),
         tap((search) => (this.search = search)),
-        tap((search) =>
-          this.analytics.trigger('search query', 'search', search)
-        ),
+        tap((search) => this.analytics.trigger('search query', 'search', search)),
         tap(() => (this.activeIndex = 0)),
         switchMap((search) =>
-          this.scully.available$.pipe(
-            map((routes) => this.searchPipe.transform(routes, search))
-          )
+          this.scully.available$.pipe(map((routes) => this.searchPipe.transform(routes, search)))
         ),
         tap((searchResult) => (this.searchResult = searchResult))
       )
@@ -118,11 +102,7 @@ export class NizSearch implements OnInit {
 
   private openActive(index: number) {
     this.closeSearch();
-    this.analytics.trigger(
-      'search result enter',
-      'search',
-      this.searchResult[index].url
-    );
+    this.analytics.trigger('search result enter', 'search', this.searchResult[index].url);
     this.router.navigateByUrl(this.searchResult[index].url);
   }
 

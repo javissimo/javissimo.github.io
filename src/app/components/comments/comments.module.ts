@@ -6,6 +6,6 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 @NgModule({
   declarations: [CommentsComponent],
   exports: [CommentsComponent],
-  imports: [ScullyLibModule, CommonModule],
+  imports: [ScullyLibModule, CommonModule]
 })
 export class CommentsModule {}

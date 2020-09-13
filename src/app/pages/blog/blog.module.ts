@@ -5,7 +5,6 @@ import { ComponentsModule } from '@components/components.module';
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
 import { BlogPostModule } from '@pages/blog-post/blog-post.module';
-import { NewsletterSignupModule } from '@components/newsletter-signup/newsletter-signup.module';
 import { TagsViewModule } from '@components/tags-view/tags-view.module';
 import { ArticleModule } from '@components/article/article.module';
 
@@ -17,9 +16,8 @@ import { ArticleModule } from '@components/article/article.module';
     ScullyLibModule,
     ComponentsModule,
     BlogPostModule,
-    NewsletterSignupModule,
     TagsViewModule,
-    ArticleModule,
-  ],
+    ArticleModule
+  ]
 })
 export class BlogModule {}

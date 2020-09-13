@@ -7,14 +7,8 @@ import { NizSearch } from './search.component';
 import { PipesModule } from '@pipes/pipes.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    NizInlineSvgModule,
-    PipesModule,
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, NizInlineSvgModule, PipesModule],
   declarations: [NizSearch],
-  exports: [NizSearch],
+  exports: [NizSearch]
 })
 export class NizSearchComponentModule {}

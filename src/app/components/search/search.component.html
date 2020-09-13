@@ -1,14 +1,6 @@
-<div
-  class="flex fixed items-start justify-center z-50 px-4 pt-40 inset-0"
-  [class.hidden]="!isOpen"
->
-  <div
-    class="absolute inset-0 bg-background-shade opacity-50"
-    (click)="closeSearch()"
-  ></div>
-  <div
-    class="max-w-2xl w-full relative bg-background rounded-lg overflow-hidden shadow-xl"
-  >
+<div class="flex fixed items-start justify-center z-50 px-4 pt-40 inset-0" [class.hidden]="!isOpen">
+  <div class="absolute inset-0 bg-background-shade opacity-50" (click)="closeSearch()"></div>
+  <div class="max-w-2xl w-full relative bg-background rounded-lg overflow-hidden shadow-xl">
     <input
       class="appearance-none w-full bg-transparent text-lg font-semibold px-6 py-4 placeholder-color-light focus:outline-none"
       type="text"
