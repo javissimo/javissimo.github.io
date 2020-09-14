@@ -16,28 +16,27 @@ import { FooterSection } from '@components/footer/footer.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  copyrightUrl = 'legal/privacy-policy';
+  copyleftUrl = 'https://creativecommons.org/licenses/by-nc-nd/2.0/deed.es';
   current$: Observable<ScullyRoute>;
   createdWithSvgSources = [
     'assets/stack/angular.svg',
     'assets/stack/scully.svg',
-    'assets/stack/tailwind-css.svg',
-    'assets/stack/firebase.svg'
+    'assets/stack/tailwind-css.svg'
   ];
 
   footerSections: FooterSection[] = [
     {
-      title: 'where to find me',
+      title: 'dónde encontrarme',
       links: [
         {
           title: ' @javissimo',
-          url: 'https://github.com/notiz-dev',
+          url: 'https://github.com/javissimo',
           svg: 'assets/img/github-white.svg',
           external: true
         },
         {
-          title: 'info@javier.pm',
-          url: 'mailto:hi@notiz.dev',
+          title: 'info at javier.pm',
+          url: 'mailto:info@javier.pm',
           svg: 'assets/img/mail.svg',
           external: true
         }
@@ -47,17 +46,12 @@ export class AppComponent implements OnInit {
       title: 'meta',
       links: [
         {
-          title: 'all posts',
+          title: 'artículos',
           url: '/blog/',
           svg: 'assets/img/blog-white.svg'
         },
         {
-          title: 'about me',
-          url: '/about/me',
-          svg: 'assets/img/author.svg'
-        },
-        {
-          title: 'tags',
+          title: 'categorías',
           url: '/tags/',
           svg: 'assets/img/tags-white.svg'
         }

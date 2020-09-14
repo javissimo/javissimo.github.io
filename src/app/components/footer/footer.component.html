@@ -1,28 +1,12 @@
 <footer class="w-full max-w-screen-xl mx-auto text-white px-5">
   <div class="md:grid md:grid-cols-2">
     <div>
-      <p class="text-sm font-semibold text-color-shade">about</p>
+      <p class="text-sm font-semibold text-color-shade">sobre mí</p>
       <div>
         <p class="my-4 text-color text-sm text-justify">
-          <strong>*notiz.dev</strong> is created by
-          <a
-            class="gradient text-cyan font-semibold"
-            href="https://notiz.dev/authors/gary-grossgarten"
-            >Gary Großgarten</a
-          >
-          and
-          <a
-            class="gradient text-cyan font-semibold"
-            href="https://notiz.dev/authors/marc-stammerjohann"
-            >Marc Stammerjohann</a
-          >. We love to share our experiences and findings working with Angular,
-          NestJS, Web Components and more. 👀 We are excited about the upcoming
-          years of web development and hope to make some friends along the way.
-        </p>
-        <p class="my-4">
-          <em class="text-color text-xs"
-            >* notiz [noˈtiːt͡s] - (german) short, brief, written record</em
-          >
+          ¡Hola! Soy Javi y trabajo en el mundillo del software. En mis ratos libres suelo leer o
+          tocar la guitarra. Paso la mayor parte del tiempo en Madrid aunque, cada vez que puedo,
+          vuelvo al sur.
         </p>
       </div>
     </div>
@@ -52,10 +36,7 @@
             </a>
 
             <ng-template #myTemplate>
-              <niz-inline-svg
-                class="h-4 w-4 mr-1"
-                [svgSource]="link.svg"
-              ></niz-inline-svg>
+              <niz-inline-svg class="h-4 w-4 mr-1" [svgSource]="link.svg"></niz-inline-svg>
               {{ link.title }}
             </ng-template>
           </ng-container>
@@ -66,7 +47,9 @@
 
   <div class="mt-5">
     <div class="flex justify-center">
-      <p class="text-color text-base">Created with</p>
+      <p class="text-color text-base">
+        Basado en <a href="https://notiz.dev" rel="noopener noreferrer">notiz.dev</a>, usando
+      </p>
       <div class="ml-1 flex items-center">
         <niz-inline-svg
           class="h-5 w-5"
@@ -77,7 +60,8 @@
     </div>
 
     <p class="text-sm text-color-light text-center">
-      © <a [routerLink]="copyrightUrl">notiz.dev</a>
+      <span class="copyleft mr-1">©</span>
+      <a target="_blank" href="{{ copyleftUrl }}" rel="noopener noreferrer">cc by-nc-nd 2.0</a>
       {{ now | date: 'yyyy' }}
     </p>
   </div>

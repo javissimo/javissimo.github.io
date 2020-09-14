@@ -20,7 +20,7 @@ export class TagsComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.generateTags({
-      title: 'Tags',
+      title: 'Categorías',
       description: 'All tags on notiz.dev'
     });
 

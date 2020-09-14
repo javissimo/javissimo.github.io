@@ -22,10 +22,10 @@ export class NizFooter implements OnInit {
   now = Date.now();
 
   @Input() footerSections: FooterSection[];
-  @Input() copyrightUrl: string;
+  @Input() copyleftUrl: string;
   @Input() createdWithSvgSources: string[];
 
-  @HostBinding('class') get classes(): string{
+  @HostBinding('class') get classes(): string {
     return 'block';
   }
 

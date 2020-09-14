@@ -67,6 +67,7 @@ module.exports = {
   },
 };
 ```
+![Project structure](assets/img/test.svg)
 
 Now open **angular.json** file to apply the extra webpack config to generate Tailwind styles during `ng build`, `ng serve` and `ng test`. If you used the schematics `ng add ngx-build-plus` it automatically replaces `@angular-devkit/build-angular` with `ngx-build-plus` in your `angular.json`. Additionally, add the `extraWebpackConfig` to each build step. In the end your **angular.json** should look like this:
 

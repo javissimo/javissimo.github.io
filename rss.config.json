@@ -1,16 +1,16 @@
 {
-  "title": "notiz.dev",
+  "title": "javier.pm",
   "description": "Weeklyish Articles about Web Development",
-  "id": "https://notiz.dev",
-  "link": "https://notiz.dev",
+  "id": "https://",
+  "link": "https://javier.pm",
   "language": "en",
-  "image": "https://notiz.dev/assets/img/featured.png",
-  "favicon": "https://notiz.dev/favicon.png",
-  "copyright": "2020 notiz.dev",
+  "image": "https://javier.pm/assets/img/featured.png",
+  "favicon": "https://javier.pm/favicon.ico",
+  "copyright": "2020 javier.pm",
   "generator": "Weeklyish Articles about Web Development",
   "feedLinks": {
-    "json": "https://notiz.dev/feed.json",
-    "atom": "https://notiz.dev/feed.atom"
+    "json": "https://javier.pm/feed.json",
+    "atom": "https://javier.pm/feed.atom"
   },
   "outDir": "./dist/static",
   "categories": ["Web Development", "Blog", "Angular", "node"]

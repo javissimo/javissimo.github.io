@@ -1,14 +1,8 @@
 import { Router, NavigationStart } from '@angular/router';
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  AfterViewChecked,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewChecked, OnDestroy } from '@angular/core';
 import { HighlightService } from '@services/highlight.service';
 import { SeoService } from '@services/seo.service';
-import { ScullyRoutesService, ScullyRoute } from '@scullyio/ng-lib';
+import { ScullyRoute } from '@scullyio/ng-lib';
 import { first, tap, map, switchMap, takeUntil, filter } from 'rxjs/operators';
 import { Observable, fromEvent, Subject } from 'rxjs';
 import { ScullyContentService } from 'src/app/services/scully-content.service';
@@ -18,7 +12,7 @@ import { ScullyContentService } from 'src/app/services/scully-content.service';
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.scss'],
   preserveWhitespaces: true,
-  encapsulation: ViewEncapsulation.Emulated,
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
   post$: Observable<ScullyRoute>;
@@ -36,7 +30,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.router.events
       .pipe(
         takeUntil(this.destroy$),
@@ -64,9 +58,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
                 title: post.title,
                 description: post.description,
                 route: post.route,
-                keywords: post.keywords
-                  ? post.tags.concat(post.keywords)
-                  : post.tags,
+                keywords: post.keywords ? post.tags.concat(post.keywords) : post.tags,
                 twitter_image: `https://notiz.dev/assets/banners${post.route}/twitter.png`,
                 og_image: `https://notiz.dev/assets/banners${post.route}/og.png`,
                 article: {
@@ -76,9 +68,9 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
                   author: [
                     ...authors
                       .filter((a) => post.authors.some((a2) => a2 === a.title))
-                      .map((a) => `https://notiz.dev${a.route}`),
-                  ],
-                },
+                      .map((a) => `https://notiz.dev${a.route}`)
+                  ]
+                }
               })
             )
           )
@@ -94,9 +86,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
             map((post) =>
               posts
                 .filter((p) => p.route !== post.route)
-                .filter((p) =>
-                  p.tags.some((t) => post.tags.some((t2) => t2 === t))
-                )
+                .filter((p) => p.tags.some((t) => post.tags.some((t2) => t2 === t)))
             )
           )
         )
@@ -107,11 +97,7 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
       .pipe(
         switchMap((authors) =>
           this.post$.pipe(
-            map((post) =>
-              authors.filter((author) =>
-                post.authors.some((a) => a === author.title)
-              )
-            )
+            map((post) => authors.filter((author) => post.authors.some((a) => a === author.title)))
           )
         )
       );
