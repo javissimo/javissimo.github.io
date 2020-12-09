@@ -6,10 +6,10 @@
   --tw-color-gray-200: #edf2f7;
   --tw-color-gray-300: #e2e8f0;
   --tw-color-gray-400: #cbd5e0;
-  --tw-color-gray-500: #a0aec0;
+  --tw-color-gray-500: #8f98a5;
   --tw-color-gray-600: #718096;
   --tw-color-gray-700: #4a5568;
-  --tw-color-gray-800: #2d3748;
+  --tw-color-gray-800: #323641;
   --tw-color-gray-900: #222630;
   --tw-color-red-100: #fff5f5;
   --tw-color-red-200: #fed7d7;
@@ -94,7 +94,7 @@
   --tw-color-pink-900: #702459;
 
   //extensions
-  --tw-color-gray-950: #14120e;
+  --tw-color-gray-950: #010409;
   --orange: #e9b50d;
   --orange-rgb: 85, 185, 243;
   --bright-orange: #f3cd23;
@@ -123,12 +123,12 @@ body.dark {
 }
 
 body:not(.dark) {
-  --background: var(--tw-color-gray-100);
+  --background: var(--tw-color-gray-200);
   --background-opac: #edf2f7dd;
   --background-light: var(--tw-color-white);
   --background-shade: var(--tw-color-gray-400);
   --text: var(--tw-color-gray-800);
   --text-light: var(--tw-color-gray-700);
-  --text-shade: var(--tw-color-gray-500);
+  --text-shade: var(--tw-color-gray-600);
   --code: #f38e54;
 }
