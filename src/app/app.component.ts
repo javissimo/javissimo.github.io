@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
           external: true
         },
         {
-          title: 'info at javier.pm',
+          title: 'info@javier.pm',
           url: 'mailto:info@javier.pm',
           svg: 'assets/img/mail.svg',
           external: true
