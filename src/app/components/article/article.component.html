@@ -15,14 +15,10 @@
   <div class="text-base text-color-light description line-clamp-2 leading-6 mb-3">
     {{ route.description }}
   </div>
-  <niz-chip
-    class="tags gradient"
-    *ngFor="let tag of route.tags | slice: 0:3"
-    size="xl"
-  >
+  <niz-chip class="tags gradient" *ngFor="let tag of route.tags | slice: 0:3" size="xl">
     <a [routerLink]="'/tags/' + tag | dash | lowercase">{{ tag }}</a>
   </niz-chip>
-  <span class="absolute bottom-4 flex flow-row space-x-2 items-center h-6">
+  <span class="absolute bottom-4 flex flow-row space-x-2 items-center h-6 mb-3">
     <span class="font-bold text-color-light mt-5">Read More</span>
     <niz-inline-svg
       class="icon h-4 w-4 text-blue mt-5"

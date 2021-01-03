@@ -13,15 +13,12 @@ export class TagsComponent implements OnInit {
   blogPosts$: Observable<ScullyRoute[]>;
   tags$: Observable<ScullyRoute[]>;
 
-  constructor(
-    private scullyContent: ScullyContentService,
-    private seo: SeoService
-  ) {}
+  constructor(private scullyContent: ScullyContentService, private seo: SeoService) {}
 
   ngOnInit(): void {
     this.seo.generateTags({
-      title: 'Categorías',
-      description: 'All tags on notiz.dev'
+      title: 'Tags',
+      description: 'All tags on the blog'
     });
 
     this.blogPosts$ = this.scullyContent.posts();

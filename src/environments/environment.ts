@@ -5,18 +5,11 @@
 export const environment = {
   production: false,
   url: 'https://javier.pm',
-  title: 'javier.pm',
+  title: 'Javier Peralta Muñoz',
   description:
     'Weeklyish articles about Angular, Nestjs, Web Components, and more things related to web development.',
   featureImage: 'assets/img/featured.png',
-  keywords: [
-    'notiz',
-    'notiz.dev',
-    'Angular',
-    'Nestjs',
-    'Web Components',
-    'Scully'
-  ]
+  keywords: ['notiz', 'notiz.dev', 'Angular', 'Nestjs', 'Web Components', 'Scully']
 };
 
 /*

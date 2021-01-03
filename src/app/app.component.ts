@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   footerSections: FooterSection[] = [
     {
-      title: 'dónde encontrarme',
+      title: 'where to find me',
       links: [
         {
           title: ' @javissimo',
@@ -46,12 +46,12 @@ export class AppComponent implements OnInit {
       title: 'meta',
       links: [
         {
-          title: 'artículos',
+          title: 'articles',
           url: '/blog/',
           svg: 'assets/img/blog-white.svg'
         },
         {
-          title: 'categorías',
+          title: 'tags',
           url: '/tags/',
           svg: 'assets/img/tags-white.svg'
         }
