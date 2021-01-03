@@ -4,6 +4,7 @@
   @apply flex-wrap;
   @apply w-full;
   @apply h-64;
+  @apply mb-4;
 }
 
 @screen lg {
@@ -24,6 +25,9 @@
   .tags {
     @apply bg-background;
     @apply mb-8;
+    @apply px-2;
+    @apply py-1;
+    @apply mr-1;
   }
   .icon {
     @apply hidden;

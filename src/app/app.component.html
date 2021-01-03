@@ -1,3 +1,5 @@
+<div class="min-h-screen flex flex-col">
+
 <niz-navbar>
   <niz-toolbar class="px-5">
     <div start class="flex flex-row space-x-8 items-center">
@@ -46,7 +48,7 @@
   </niz-toolbar>
 </niz-navbar>
 
-<main class="pt-10">
+<main class="pt-10 flex-1">
   <router-outlet></router-outlet>
 </main>
 
@@ -90,3 +92,4 @@
   [copyleftUrl]="copyleftUrl"
   [createdWithSvgSources]="createdWithSvgSources"
 ></niz-footer>
+</div>

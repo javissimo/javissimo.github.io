@@ -53,14 +53,14 @@ export class AppComponent implements OnInit {
       title: 'meta',
       links: [
         {
-          title: 'articles',
-          url: '/blog/',
-          svg: 'assets/img/blog-white.svg'
-        },
-        {
           title: 'tags',
           url: '/tags/',
           svg: 'assets/img/tags-white.svg'
+        },
+        {
+          title: 'articles',
+          url: '/blog/',
+          svg: 'assets/img/blog-white.svg'
         }
       ]
     }

@@ -6,7 +6,7 @@
       *ngIf="(content.getCurrent() | async)?.route as route"
       (click)="scrollToTop(route)"
     >
-      Inicio
+      Index
     </a>
   </li>
   <li *ngFor="let header of headers$ | async" class="cursor-pointer">

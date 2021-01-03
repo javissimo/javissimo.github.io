@@ -23,6 +23,7 @@ body {
 }
 
 .gradient:hover {
+  border-color: var(--orange);
   background: var(--gradient);
   background-clip: text;
   -webkit-background-clip: text;
