@@ -10,7 +10,7 @@
         </p>
       </div>
     </div>
-    <div class="grid grid-cols-2 p-4">
+    <div class="grid grid-cols-2 p-2">
       <div *ngFor="let footerSection of footerSections">
         <p class="text-sm font-semibold text-color-shade text-center">
           {{ footerSection.title }}
@@ -34,7 +34,6 @@
             >
               <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
             </a>
-
             <ng-template #myTemplate>
               <niz-inline-svg class="h-4 w-4 mr-1" [svgSource]="link.svg"></niz-inline-svg>
               {{ link.title }}
@@ -48,15 +47,8 @@
   <div class="mt-5">
     <div class="flex justify-center">
       <p class="text-color text-base">
-        Theme by <a href="https://notiz.dev" rel="noopener noreferrer">notiz.dev</a>, which makes use of
+        Theme by <a href="https://notiz.dev" rel="noopener noreferrer">notiz.dev</a>
       </p>
-      <div class="ml-1 flex items-center">
-        <niz-inline-svg
-          class="h-5 w-5"
-          *ngFor="let svg of createdWithSvgSources"
-          [svgSource]="svg"
-        ></niz-inline-svg>
-      </div>
     </div>
 
     <p class="text-sm text-color-light text-center">

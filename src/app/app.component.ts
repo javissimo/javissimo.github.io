@@ -29,11 +29,18 @@ export class AppComponent implements OnInit {
       title: 'where to find me',
       links: [
         {
-          title: ' @javissimo',
+          title: 'javierpm',
+          url: 'mailto:info@javier.pm',
+          svg: 'assets/img/linkedin.svg',
+          external: true
+        },
+        {
+          title: ' javissimo',
           url: 'https://github.com/javissimo',
           svg: 'assets/img/github-white.svg',
           external: true
         },
+
         {
           title: 'info@javier.pm',
           url: 'mailto:info@javier.pm',
