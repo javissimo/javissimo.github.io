@@ -19,12 +19,12 @@ export class NizBanner {
   @Input() width = 1200;
 
   @HostBinding('style.width')
-  get _width() {
+  get _width(): string {
     return `${this.width}px`;
   }
 
   @HostBinding('style.height')
-  get _height() {
+  get _height(): string {
     return `${this.height}px`;
   }
 }
