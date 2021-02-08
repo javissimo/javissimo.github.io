@@ -1,15 +1,17 @@
 ---
-title: Estado del arte de los planificadores clásicos
-description: Se analizarán cuatro planificadores clásicos (secuenciales, deterministas) presentados en la IPC (International Planning Competition) celebrada en 018 (SYMPLE, MSP) y 2020 (Lilotane e HyperTensioN).
+title: 'Estado del arte de los planificadores clásicos'
+description: 'Se analizarán cuatro planificadores clásicos (secuenciales, deterministas) presentados en la IPC (International Planning Competition) celebrada en 018 (SYMPLE, MSP) y 2020 (Lilotane e HyperTensioN).'
 published: false
 publishedAt: 2021-01-07T00:00:00.000Z
 updatedAt: 2021-01-07T00:00:00.000Z
 tags:
-  - Inteligencia artificial
+    - 'Inteligencia artificial'
 keywords:
-  - Planners
+    - Planners
 authors:
-  - Javier Peralta
+    - 'Javier Peralta'
+slugs:
+    - ___UNPUBLISHED___kkx15quf_kMnHvGFar1h5Ihy63bWeuCOExGzKsh7o
 ---
 
 ## Introducción
