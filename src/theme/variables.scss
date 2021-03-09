@@ -102,8 +102,6 @@
   --dark-orange: #c57b0b;
   --dark-orange-rgb: 85, 106, 243;
   --danger: #ff4961;
-
-  --gradient: linear-gradient(145deg, var(--bright-orange), var(--orange), var(--dark-orange));
 }
 
 body.dark {
@@ -115,6 +113,15 @@ body.dark {
   --text-light: var(--tw-color-gray-300);
   --text-shade: var(--tw-color-gray-400);
   --code: #ffe9cd;
+
+  --orange: #e9b50d;
+  --orange-rgb: 85, 185, 243;
+  --bright-orange: #f3cd23;
+  --light-orange-rgb: 243, 205, 35;
+  --dark-orange: #c57b0b;
+  --dark-orange-rgb: 197, 123, 11;
+
+  --gradient: linear-gradient(145deg, var(--bright-orange), var(--orange), var(--dark-orange));
 }
 
 body:not(.dark) {
@@ -126,4 +133,13 @@ body:not(.dark) {
   --text-light: var(--tw-color-gray-700);
   --text-shade: var(--tw-color-gray-600);
   --code: #f38e54;
+
+  --orange: #7719aa;
+  --orange-rgb: 119, 25, 170;
+  --bright-orange: #984dc0;
+  --light-orange-rgb: 152, 77, 192;
+  --dark-orange: #4f0477;
+  --dark-orange-rgb: 79, 4, 119;
+
+  --gradient: linear-gradient(145deg, var(--bright-orange), var(--orange), var(--dark-orange));
 }
