@@ -37,21 +37,15 @@
             ],
             "styles": ["src/styles.scss", "src/theme/variables.scss"],
             "scripts": [
-              "node_modules/marked/lib/marked.js",
-              "dist/shortcodes/main-es5.js",
-              "dist/shortcodes/main-es2015.js",
-              "dist/shortcodes/polyfills-es5.js",
-              "dist/shortcodes/polyfills-es2015.js"
+              "node_modules/marked/lib/marked.js"
             ]
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": {
                 "scripts": true,
                 "styles": {
@@ -68,8 +62,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
+              "budgets": [{
                   "type": "initial",
                   "maximumWarning": "1.5mb",
                   "maximumError": "5mb"
@@ -210,12 +203,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/shortcodes/src/environments/environment.ts",
-                  "with": "projects/shortcodes/src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "projects/shortcodes/src/environments/environment.ts",
+                "with": "projects/shortcodes/src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -223,8 +214,7 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [
-                {
+              "budgets": [{
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
