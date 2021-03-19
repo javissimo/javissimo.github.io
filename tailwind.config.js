@@ -1,41 +1,60 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-  purge:
-  {
-    enabled: true,
-    content:[
-    './src/**/*.html',
-    './src/**/*.ts',
-    './projects/design/**/*.html',
-    './projects/design/**/*.ts',
-    './projects/shortcodes/**/*.html',
-    './projects/shortcodes/**/*.ts',
-  ]},
+  purge: [
+    './src/**/*.{html,ts}',
+    './projects/design/**/*.{html,ts}',
+    './projects/shortcodes/**/*.{html,ts}',
+  ],
+  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        blue: 'var(--orange)',
-        'blue-opacity-10': 'rgba(var(--orange-rgb), 0.1)',
-        cyan: 'var(--light-orange)',
-        'cyan-opacity-10': 'rgba(var(--light-orange-rgb), 0.1)',
-        'dark-blue': 'var(--dark-orange)',
-        'dark-blue-opacity-10': 'rgba(var(--dark-orange-rgb), 0.1)',
-        background: 'var(--background)',
-        'background-opac': 'var(--background-opac)',
-        'background-light': 'var(--background-light)',
-        'background-shade': 'var(--background-shade)',
-        color: 'var(--text)',
-        'color-light': 'var(--text-light)',
-        'color-shade': 'var(--text-shade)',
-        tabs: 'var(--tabs)',
-        danger: 'var(--danger)',
-        code: 'var(--code)',
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: '#000',
+      white: '#fff',
+      red: colors.red,
+      orange: colors.orange,
+      green: colors.green,
+      gray: {
+        100: '#f7fafc',
+        200: '#edf2f7',
+        300: '#e2e8f0',
+        400: '#cbd5e0',
+        500: '#a0aec0',
+        600: '#718096',
+        700: '#4a5568',
+        800: '#1a202c',
+        900: '#222630',
+        950: '#141922',
+        1000: '#0d1117',
       },
+      primary: {
+        light: '#f3cd23',
+        DEFAULT: '#e9b50d',
+        dark: '#c57b0b',
+      },
+      secondary: {
+        light: '#9400d3',
+        DEFAULT: '#800080',
+        dark: '#4b0082',
+      },
+      color: 'var(--text)',
+      'color-light': 'var(--text-light)',
+      'color-shade': 'var(--text-shade)',
+      danger: '#ff4961',
+      code: 'var(--code)',
+      canvas: {
+        light: 'var(--canvas-light)',
+        DEFAULT: 'var(--canvas)',
+        shade: 'var(--canvas-shade)',
+        opac: 'var(--canvas-opac)',
+      },
+    },
+    extend: {
+      colors: {},
       fontFamily: {
-        sans: ['Noto Sans JP'],
+        sans: ['Muli'],
       },
       inset: {
         4: '1rem',
@@ -46,12 +65,12 @@ module.exports = {
         32: '8rem',
       },
       maxHeight: {
-        '248': '248px',
-        '384': '384px',
-        '524': '524px',
+        248: '248px',
+        384: '384px',
+        524: '524px',
       },
       transformOrigin: {
-        '0': '0%',
+        0: '0%',
       },
       zIndex: {
         '-1': '-1',
@@ -64,20 +83,93 @@ module.exports = {
         24: '6rem',
         80: '20rem',
       },
-    },
-    screens: {
-      xx: '0px',
-      xs: '256px',
-      sm: '576px',
-      md: '768px',
-      lg: '992px',
-      xl: '1200px',
-      dark: { raw: '(prefers-color-scheme: dark)' },
-      light: { raw: '(prefers-color-scheme: light)' },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            p: { lineHeight: '1.5' },
+            h1: { color: theme('colors.color') },
+            h2: { color: theme('colors.color') },
+            h3: { color: theme('colors.color') },
+            h4: { color: theme('colors.color') },
+            h5: { color: theme('colors.color') },
+            h6: { color: theme('colors.color') },
+            strong: { color: theme('colors.color') },
+            'ul li:before': {
+              backgroundColor: theme('colors.color-light'),
+            },
+            'ol li:before': {
+              color: theme('colors.color-light'),
+            },
+            a: {
+              color: theme('colors.primary.DEFAULT'),
+              textDecoration: 'none',
+              '&:hover': {
+                color: theme('colors.primary.light'),
+              },
+            },
+            li: { color: theme('colors.color') },
+            hr: { borderColor: theme('colors.color') },
+            code: {
+              paddingTop: theme('spacing[0.5]'),
+              paddingBottom: theme('spacing[0.5]'),
+              paddingRight: theme('spacing.1'),
+              paddingLeft: theme('spacing.1'),
+              marginRight: theme('spacing.[0.5]'),
+              marginLeft: theme('spacing.[0.5]'),
+              borderRadius: theme('borderRadius.md'),
+              color: theme('colors.code'),
+              backgroundColor: theme('colors.canvas.light'),
+            },
+            'code::before': { content: '""' },
+            'code::after': { content: '""' },
+            pre: {
+              color: theme('colors.color'),
+              backgroundColor: theme('colors.canvas.light'),
+            },
+            blockquote: {
+              color: theme('colors.color'),
+              borderLeftColor: theme('colors.color-light'),
+            },
+            'blockquote p:first-of-type::before': {
+              content: '""',
+            },
+            'blockquote p:last-of-type::after': {
+              content: '""',
+            },
+          },
+        },
+        toc: {
+          css: {
+            h2: { cursor: 'pointer' },
+            'h2::before': {
+              opacity: 0,
+              content: '"#"',
+              display: 'inline-block',
+              marginLeft: '-18px',
+              paddingRight: '2px',
+              cursor: 'pointer',
+              color: theme('colors.primary.light'),
+            },
+            'h2:hover::before': {
+              opacity: 0.75,
+            },
+          },
+        },
+      }),
+      screens: {
+        xs: '256px',
+        sm: '576px',
+        md: '768px',
+        lg: '992px',
+        xl: '1200px',
+      },
     },
   },
   variants: {
-    borderWidth: ['responsive', 'hover'],
+    extend: {
+      cursor: ['hover'],
+      borderWidth: ['hover'],
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

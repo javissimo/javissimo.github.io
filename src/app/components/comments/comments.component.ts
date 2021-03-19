@@ -47,7 +47,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
             'script'
           );
           script.src = 'https://utteranc.es/client.js';
-          script.setAttribute('repo', 'javissimo/notiz');
+          script.setAttribute('repo', 'javissimo/javissimo.github.io');
           script.setAttribute('issue-term', this.route.title);
           script.setAttribute('theme', `github-${theme}`);
           script.setAttribute('crossorin', 'anonymous');

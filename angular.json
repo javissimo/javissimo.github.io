@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -12,15 +15,14 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "niz",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
               "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard"
             ],
-            "extraWebpackConfig": "webpack.config.js",
             "outputPath": "dist/notiz",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,45 +30,54 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
+              "src/favicon.png",
               "src/robots.txt",
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/styles.scss",
-              "src/theme/variables.scss",
-              "node_modules/katex/dist/katex.min.css"
-            ],
+            "styles": ["src/styles.scss", "src/theme/variables.scss"],
             "scripts": [
               "node_modules/marked/lib/marked.js",
-              "node_modules/katex/dist/katex.min.js"
-              ]
+              "dist/shortcodes/main-es5.js",
+              "dist/shortcodes/main-es2015.js",
+              "dist/shortcodes/polyfills-es5.js",
+              "dist/shortcodes/polyfills-es2015.js"
+            ]
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
-              "extraWebpackConfig": "webpack.config.js",
-              "optimization": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": {
+                  "inline": true
+                }
+              },
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "7mb"
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "serviceWorker": true,
@@ -75,14 +86,12 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "browserTarget": "notiz:build"
           },
           "configurations": {
             "production": {
-              "extraWebpackConfig": "webpack.config.js",
               "browserTarget": "notiz:build:production"
             }
           }
@@ -94,21 +103,18 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
+              "src/favicon.png",
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -120,9 +126,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -146,7 +150,7 @@
       "prefix": "niz",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/design/tsconfig.lib.json",
             "project": "projects/design/ng-package.json"
@@ -172,9 +176,7 @@
               "projects/design/tsconfig.lib.json",
               "projects/design/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -193,7 +195,6 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "outputPath": "dist/shortcodes",
             "index": "projects/shortcodes/src/index.html",
             "main": "projects/shortcodes/src/main.ts",
@@ -204,31 +205,29 @@
               "projects/shortcodes/src/favicon.ico",
               "projects/shortcodes/src/assets"
             ],
-            "styles": [
-              "src/styles.scss",
-              "src/theme/variables.scss"
-            ],
+            "styles": ["src/styles.scss", "src/theme/variables.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "projects/shortcodes/src/environments/environment.ts",
-                "with": "projects/shortcodes/src/environments/environment.prod.ts"
-              }],
-              "extraWebpackConfig": "webpack.config.js",
+              "fileReplacements": [
+                {
+                  "replace": "projects/shortcodes/src/environments/environment.ts",
+                  "with": "projects/shortcodes/src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "7mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -240,14 +239,12 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "browserTarget": "shortcodes:build"
           },
           "configurations": {
             "production": {
-              "extraWebpackConfig": "webpack.config.js",
               "browserTarget": "shortcodes:build:production"
             }
           }
@@ -259,9 +256,8 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "main": "projects/shortcodes/src/test.ts",
             "polyfills": "projects/shortcodes/src/polyfills.ts",
             "tsConfig": "projects/shortcodes/tsconfig.spec.json",
@@ -270,9 +266,7 @@
               "projects/shortcodes/src/favicon.ico",
               "projects/shortcodes/src/assets"
             ],
-            "styles": [
-              "projects/shortcodes/src/styles.scss"
-            ],
+            "styles": ["projects/shortcodes/src/styles.scss"],
             "scripts": []
           }
         },
@@ -284,9 +278,7 @@
               "projects/shortcodes/tsconfig.spec.json",
               "projects/shortcodes/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -304,8 +296,5 @@
       }
     }
   },
-  "defaultProject": "notiz",
-  "cli": {
-    "analytics": "0a3de39a-9795-4126-8990-957d065a1cdf"
-  }
+  "defaultProject": "notiz"
 }

@@ -1,16 +1,16 @@
-<footer class="w-full max-w-screen-xl mx-auto text-white px-5">
-  <div class="md:grid md:grid-cols-2">
+<footer class="w-full max-w-screen-xl mx-auto px-5">
+  <div class="md:grid md:grid-cols-2 md:gap-x-2">
     <div>
       <p class="text-sm font-semibold text-color-shade">about</p>
-      <div>
-        <p class="my-4 text-color text-sm text-justify">
-          ¡Hola! Soy Javi y trabajo en el mundillo del software. En mis ratos libres suelo leer o
-          tocar la guitarra. Paso la mayor parte del tiempo en Madrid aunque, cada vez que puedo,
-          vuelvo al sur.
+      <div class="prose my-4">
+        <p>
+          ¡Hola! Soy Javi y trabajo en el mundillo del software. En mis ratos
+          libres suelo leer o tocar la guitarra. Paso la mayor parte del tiempo
+          en Madrid aunque, cada vez que puedo, vuelvo al sur.
         </p>
       </div>
     </div>
-    <div class="grid grid-cols-2 p-2">
+    <div class="grid grid-cols-2 px-4">
       <div *ngFor="let footerSection of footerSections">
         <p class="text-sm font-semibold text-color-shade text-center">
           {{ footerSection.title }}
@@ -20,22 +20,25 @@
             <a
               [href]="link.url"
               *ngIf="link.external"
-              (click)="analytics.ref(link.url)"
               target="_blank"
               rel="noreferrer"
-              class="text-color flex items-center justify-center text-justify rounded-full hover:text-blue hover:bg-blue-opacity-10 p-1 mx-1"
+              class="text-color flex items-center justify-center text-justify rounded-full hover:text-primary hover:bg-primary hover:bg-opacity-10 focus-ring p-1 mx-1"
             >
               <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
             </a>
             <a
               [routerLink]="link.url"
               *ngIf="!link.external"
-              class="text-color flex items-center justify-center text-justify rounded-full hover:text-blue hover:bg-blue-opacity-10 p-1 mx-1"
+              class="text-color flex items-center justify-center text-justify rounded-full hover:text-primary hover:bg-primary hover:bg-opacity-10 focus-ring p-1 mx-1"
             >
               <ng-container *ngTemplateOutlet="myTemplate"></ng-container>
             </a>
+
             <ng-template #myTemplate>
-              <niz-inline-svg class="h-4 w-4 mr-1" [svgSource]="link.svg"></niz-inline-svg>
+              <niz-inline-svg
+                class="h-4 w-4 mr-1"
+                [svgSource]="link.svg"
+              ></niz-inline-svg>
               {{ link.title }}
             </ng-template>
           </ng-container>
@@ -47,13 +50,19 @@
   <div class="mt-5">
     <div class="flex justify-center">
       <p class="text-color text-base">
-        Theme by <a href="https://notiz.dev" rel="noopener noreferrer">notiz.dev</a>
+        Theme by
+        <a href="https://notiz.dev" rel="noopener noreferrer">notiz.dev</a>
       </p>
     </div>
 
     <p class="text-sm text-color-light text-center">
-      <span class="copyleft mr-1">©</span>
-      <a target="_blank" href="{{ copyleftUrl }}" rel="noopener noreferrer">cc by-nc-nd 2.0</a>
+      ©
+      <a
+        [routerLink]="copyleftUrl"
+        class="focus-ring rounded-md"
+        rel="noopener noreferrer"
+        >cc by-nc-nd 2.0</a
+      >
       {{ now | date: 'yyyy' }}
     </p>
   </div>

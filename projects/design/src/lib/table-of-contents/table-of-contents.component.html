@@ -1,12 +1,12 @@
 <ul class="">
-  <h2 class="text-xl font-semibold">Index</h2>
+  <h2 class="text-xl font-semibold">Table of Contents</h2>
   <li class="cursor-pointer">
     <a
       [class]="headerClasses('h3')"
       *ngIf="(content.getCurrent() | async)?.route as route"
       (click)="scrollToTop(route)"
     >
-      Index
+      Top of Page
     </a>
   </li>
   <li *ngFor="let header of headers$ | async" class="cursor-pointer">
@@ -16,6 +16,11 @@
       (click)="scrollTo(route, header.id)"
     >
       {{ header.innerHTML }}
+    </a>
+  </li>
+  <li class="cursor-pointer">
+    <a [class]="headerClasses('h3')" (click)="scrollToRelated()">
+      Related Articles
     </a>
   </li>
 </ul>

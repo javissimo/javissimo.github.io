@@ -18,16 +18,17 @@
   @apply mb-6;
   @apply mr-6;
   @apply h-full;
-  @apply bg-background-light;
+  @apply bg-canvas-light;
   @apply rounded-lg;
   @apply py-5;
   @apply px-4;
   .tags {
-    @apply bg-background;
+    @apply bg-canvas;
     @apply mb-8;
     @apply px-2;
     @apply py-1;
     @apply mr-1;
+    @apply hover:text-primary;
   }
   .icon {
     @apply hidden;
@@ -39,13 +40,13 @@
 }
 .article-card:hover {
   h2 {
-    @apply text-blue;
+    @apply text-primary;
   }
 
   .icon {
     @apply flex;
     svg {
-      @apply text-blue;
+      @apply text-primary;
     }
   }
 }

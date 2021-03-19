@@ -2,7 +2,7 @@
   <div class="flex flex-row items-center text-sm space-x-2">
     <niz-inline-svg
       *ngIf="type === 'LINK'"
-      class="h-4 w-4 text-cyan"
+      class="h-4 w-4 text-primary-light"
       svgSource="assets/img/link.svg"
     ></niz-inline-svg>
     <span>{{ route.updatedAt | date: 'MMMM dd, yyyy' }}</span>
@@ -15,13 +15,17 @@
   <div class="text-base text-color-light description line-clamp-2 leading-6 mb-3">
     {{ route.description }}
   </div>
-  <niz-chip class="tags gradient" *ngFor="let tag of route.tags | slice: 0:3" size="xl">
+  <niz-chip
+    class="tags gradient"
+    *ngFor="let tag of route.tags | slice: 0:3"
+    size="xl"
+  >
     <a [routerLink]="'/tags/' + tag | dash | lowercase">{{ tag }}</a>
   </niz-chip>
   <span class="absolute bottom-4 flex flow-row space-x-2 items-center h-6 mb-3">
     <span class="font-bold text-color-light mt-5">Read More</span>
     <niz-inline-svg
-      class="icon h-4 w-4 text-blue mt-5"
+      class="icon h-4 w-4 text-primary mt-5"
       svgSource="assets/img/arrow-right.svg"
     ></niz-inline-svg>
   </span>

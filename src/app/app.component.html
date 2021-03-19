@@ -3,8 +3,13 @@
 <niz-navbar>
   <niz-toolbar class="px-5">
     <div start class="flex flex-row space-x-8 items-center">
-      <a class="flex items-center select-none space-x-2" [routerLink]="['/']">
-        <span class="text-2xl font-black">Yet another software blog</span>
+      <a
+        class="flex items-center select-none space-x-2 rounded-md focus-ring focus:ring-inset"
+        [routerLink]="['/']"
+      >
+        <span class="text-2xl font-black"
+          >Yet another software blog</span
+        >
       </a>
     </div>
 
@@ -12,13 +17,18 @@
       <button
         [attr.aria-label]="'Open search'"
         (click)="openSearch(search)"
-        class="hidden md:flex bg-background-light border-solid border-2 border-background-light hover:border-blue focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
+        class="hidden md:flex bg-canvas-light border-solid border-2 border-canvas-light hover:border-primary focus-ring rounded-xl p-1 flex-row space-x-1 items-center"
       >
-        <niz-inline-svg class="h-4 w-4 theme" svgSource="assets/img/search.svg"></niz-inline-svg>
-        <span class="px-2 outline-none font-semibold"> "<kbd>/</kbd>" to focus</span>
+        <niz-inline-svg
+          class="h-4 w-4 theme"
+          svgSource="assets/img/search.svg"
+        ></niz-inline-svg>
+        <span class="px-2 outline-none font-semibold">
+          "<kbd>/</kbd>" to focus</span
+        >
       </button>
       <button
-        class="hidden md:flex h-6 w-6 theme focus:outline-none select-none"
+        class="hidden md:flex h-6 w-6 theme rounded-full focus-ring focus:ring-offset-4 focus:ring-offset-canvas select-none"
         [attr.aria-label]="'Toggle theme'"
         [ngClass]="{
           dark: themeService.theme === 'dark',
@@ -70,22 +80,27 @@
     <button
       (click)="openSearch(search)"
       [attr.aria-label]="'Open search'"
-      class="flex bg-background-light border-solid border-2 border-background-light hover:border-blue focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
+      class="flex bg-canvas-light border-solid border-2 border-canvas-light hover:border-primary focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
     >
-      <niz-inline-svg class="h-4 w-4 theme" svgSource="assets/img/search.svg"></niz-inline-svg>
+      <niz-inline-svg
+        class="h-4 w-4 theme"
+        svgSource="assets/img/search.svg"
+      ></niz-inline-svg>
       <span class="px-2 outline-none font-semibold"> Tap to focus</span>
     </button>
     <button
       (click)="toggleTheme(); $event.stopPropagation()"
       [attr.aria-label]="'Toggle theme'"
-      class="flex bg-background-light border-solid border-2 border-background-light hover:border-blue focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
+      class="flex bg-canvas-light border-solid border-2 border-canvas-light hover:border-primary focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
     >
-      <niz-inline-svg class="h-4 w-4 theme" svgSource="assets/img/adjust.svg"></niz-inline-svg>
+      <niz-inline-svg
+        class="h-4 w-4 theme"
+        svgSource="assets/img/adjust.svg"
+      ></niz-inline-svg>
       <span class="px-2 outline-none font-semibold"> Toggle theme</span>
     </button>
   </div>
 </niz-menu>
-
 <niz-footer
   class="my-10 px-5"
   [footerSections]="footerSections"

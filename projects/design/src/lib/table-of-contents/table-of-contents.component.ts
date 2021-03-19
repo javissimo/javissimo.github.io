@@ -2,7 +2,7 @@ import { ScullyContentService } from '@services/scully-content.service';
 import { Component, OnInit, Inject, OnDestroy, HostBinding } from '@angular/core';
 import { DOCUMENT, Location } from '@angular/common';
 import { fromEvent, Subject, Observable, merge } from 'rxjs';
-import { tap, map, takeUntil, switchMap } from 'rxjs/operators';
+import { tap, map, takeUntil, switchMap, filter } from 'rxjs/operators';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { ActivatedRoute } from '@angular/router';
 
@@ -29,13 +29,14 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.headers$ = fromEvent(window, 'AngularReady').pipe(
-      map(() => Array.from(this.document.querySelectorAll('.post h2,.post h3')))
+      map(() => Array.from(this.document.querySelectorAll('.prose h2,.prose h3')))
     );
 
     fromEvent(window, 'AngularReady')
       .pipe(
         switchMap(() => this.route.fragment),
         switchMap((fragment) => this.content.getCurrent().pipe(map((c) => [fragment, c.route]))),
+        filter(([fragment, route]) => !!fragment && !!route),
         tap(([fragment, route]) => this.scrollTo(route, fragment)),
         takeUntil(this.onDestroy$)
       )
@@ -90,18 +91,23 @@ export class TableOfContentsComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  scrollTo(url: string, id: string): void {
+  scrollTo(url: string, id: string) {
     this.location.replaceState(`${url}#${id}`);
     this.document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  active(url: string, id: string): string {
+  active(url: string, id: string) {
     return this.location.path(true) === `${url}#${id}` ? 'active' : '';
   }
 
-  scrollToTop(url: string): void {
+  scrollToTop(url: string) {
     this.location.replaceState(`${url}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  scrollToRelated() {
+    const stack = Array.from(this.document.getElementsByTagName('app-card-stack'))[0];
+    stack?.scrollIntoView({ behavior: 'smooth' });
   }
 
   headerClasses(header: string): string {

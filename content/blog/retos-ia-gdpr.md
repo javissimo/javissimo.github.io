@@ -1,6 +1,6 @@
 ---
 title: Ética y legalidad en aplicaciones basadas en inteligencia artificial
-description: Learn how to style Angular applications with Tailwind CSS
+description: 
 published: true
 publishedAt: 2020-09-13T08:55:00.000Z
 updatedAt: 2020-09-13T08:55:00.000Z
@@ -104,7 +104,7 @@ Los algoritmos de *deep learning*, que hacen uso de redes neuronales no lineales
 
 Por otra parte, el artículo 22 expone que 
 
->> todo interesado tendrá derecho a no ser objeto de una decisión basada únicamente en el tratamiento automatizado,
+> todo interesado tendrá derecho a no ser objeto de una decisión basada únicamente en el tratamiento automatizado,
 
 lo que en esencia limitaría la utilización de algoritmos de inteligencia artificial para multitud de escenarios. Una vez más, existe una evidente ambigüedad en la interpretación de esta regla. Podría entenderse que el usuario tiene el derecho a demandar que un ser humano tome la decisión final en un proceso o a que la decisión sea automática siempre y cuando haya dado consentimiento explícito para ello.
 
