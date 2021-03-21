@@ -36,7 +36,7 @@ module.exports = {
       },
       secondary: {
         light: '#9400d3',
-        DEFAULT: '#800080',
+        DEFAULT: '#8b008b',
         dark: '#4b0082',
       },
       color: 'var(--text)',

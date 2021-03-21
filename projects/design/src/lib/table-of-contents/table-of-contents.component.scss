@@ -3,9 +3,13 @@
 }
 
 .cursor-pointer a {
-  @apply hover:cursor-pointer hover:text-primary;
+  @apply hover:cursor-pointer;
 }
 
 .active {
   @apply text-primary;
+}
+
+.active-dark {
+  @apply text-secondary;
 }

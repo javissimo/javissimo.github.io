@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ThemeService } from '@services/theme.service';
 
 @Component({
   selector: 'niz-primary-button',
@@ -8,4 +9,6 @@ import { Component, Input } from '@angular/core';
 export class PrimaryButtonComponent {
   @Input() href: string;
   @Input() type: string;
+
+  constructor(public themeService: ThemeService) {}
 }

@@ -1,6 +1,11 @@
 <ng-container *ngIf="tab.url; else withoutUrl">
   <a
-    class="h-full w-full flex flex-col items-center justify-center hover:text-primary"
+    class="h-full w-full flex flex-col items-center justify-center"
+    [ngClass]="
+      themeService.theme === 'dark'
+        ? 'hover:text-primary'
+        : 'hover:text-secondary'
+    "
     [class.hover:text-color]="tab.logo"
     [routerLink]="tab.url"
     [routerLinkActive]="tab.routeActive ? 'active-tab' : ''"
@@ -12,7 +17,12 @@
 
 <ng-template #withoutUrl>
   <a
-    class="h-full w-full flex flex-col items-center justify-center hover:text-primary"
+    class="h-full w-full flex flex-col items-center justify-center"
+    [ngClass]="
+      themeService.theme === 'dark'
+        ? 'hover:text-primary'
+        : 'hover:text-secondary'
+    "
     [class.hover:text-color]="tab.logo"
   >
     <ng-container *ngTemplateOutlet="tabContent"></ng-container>

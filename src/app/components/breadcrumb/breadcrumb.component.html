@@ -4,12 +4,22 @@
 >
   <ng-container *ngFor="let breadcrumb of breadcrumbs | async; let last = last">
     <a
-      class="text-primary text-sm"
+      [ngClass]="
+        themeService.theme === 'dark' ? 'text-primary ' : 'text-secondary'
+      "
+      class="text-sm"
       *ngIf="!last"
       [routerLink]="[breadcrumb.url]"
       >{{ breadcrumb.text }}</a
     >
-    <span *ngIf="!last" class="text-primary text-sm">/</span>
+    <span
+      *ngIf="!last"
+      [ngClass]="
+        themeService.theme === 'dark' ? 'text-primary ' : 'text-secondary'
+      "
+      class="text-sm"
+      >/</span
+    >
     <span class="text-color-shade text-sm font-bold truncate" *ngIf="last">{{
       breadcrumb.text
     }}</span>

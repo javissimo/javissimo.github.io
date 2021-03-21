@@ -1,8 +1,21 @@
 <niz-chip
-  class="mb-1 mr-1 gradient hover:text-primary"
+  [ngClass]="
+    themeService.theme === 'dark'
+      ? 'hover:text-primary '
+      : 'hover:text-secondary'
+  "
+  class="mb-1 mr-1 gradient"
   *ngFor="let tag of tags | async | slice: 0:limit"
 >
-  <a [routerLink]="'/tags/' + tag.slug" class="focus-ring rounded-md">
+  <a
+    [routerLink]="'/tags/' + tag.slug"
+    [ngClass]="
+      themeService.theme === 'dark'
+        ? 'focus:ring-primary'
+        : 'focus:ring-secondary'
+    "
+    class="focus-ring rounded-md"
+  >
     {{ tag.title }}
   </a>
 </niz-chip>
@@ -10,7 +23,12 @@
 <a
   *ngIf="(tags | async)?.length > limit"
   [routerLink]="'/tags/'"
-  class="text-sm font-bold uppercase text-color hover:text-primary mr-2 focus-ring rounded-md"
+  [ngClass]="
+    themeService.theme === 'dark'
+      ? 'hover:text-primary focus:ring-primary'
+      : 'hover:text-secondary focus:ring-secondary'
+  "
+  class="text-sm font-bold uppercase text-color mr-2 focus-ring rounded-md"
 >
   see all
 </a>

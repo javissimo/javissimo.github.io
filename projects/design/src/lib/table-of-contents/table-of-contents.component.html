@@ -1,6 +1,10 @@
 <ul class="">
   <h2 class="text-xl font-semibold">Table of Contents</h2>
-  <li class="cursor-pointer">
+  <li
+    [ngClass]="
+      themeService.theme === 'dark' ? 'cursor-pointer' : 'cursor-pointer-dark'
+    "
+  >
     <a
       [class]="headerClasses('h3')"
       *ngIf="(content.getCurrent() | async)?.route as route"
@@ -9,7 +13,15 @@
       Top of Page
     </a>
   </li>
-  <li *ngFor="let header of headers$ | async" class="cursor-pointer">
+  <li
+    *ngFor="let header of headers$ | async"
+    [ngClass]="
+      themeService.theme === 'dark'
+        ? 'hover:text-primary'
+        : 'hover:text-secondary'
+    "
+    class="cursor-pointer"
+  >
     <a
       [ngClass]="[headerClasses(header.localName), active(route, header.id)]"
       *ngIf="(content.getCurrent() | async)?.route as route"
@@ -18,7 +30,14 @@
       {{ header.innerHTML }}
     </a>
   </li>
-  <li class="cursor-pointer">
+  <li
+    [ngClass]="
+      themeService.theme === 'dark'
+        ? 'hover:text-primary'
+        : 'hover:text-secondary'
+    "
+    class="cursor-pointer"
+  >
     <a [class]="headerClasses('h3')" (click)="scrollToRelated()">
       Related Articles
     </a>

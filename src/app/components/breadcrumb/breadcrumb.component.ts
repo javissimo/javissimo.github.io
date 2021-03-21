@@ -4,6 +4,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { ScullyRoute } from '@scullyio/ng-lib';
 import { tap, takeUntil } from 'rxjs/operators';
+import { ThemeService } from '@services/theme.service';
 
 interface Breadcrumb {
   text: string;
@@ -27,9 +28,13 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject();
 
-  constructor(private router: Router, private content: ScullyContentService) {}
+  constructor(
+    private router: Router,
+    public themeService: ThemeService,
+    private content: ScullyContentService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.content
       .getCurrent()
       .pipe(
@@ -43,7 +48,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -118,7 +123,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
       {
         pattern: /^\/tags$/,
         text: 'tags',
-      }
+      },
     ];
   }
 }

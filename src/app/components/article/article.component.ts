@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ScullyRoute } from '@scullyio/ng-lib';
 import { ContentType } from 'src/app/types/types';
+import { ThemeService } from '@services/theme.service';
 
 @Component({
   selector: 'app-article',
@@ -10,6 +11,8 @@ import { ContentType } from 'src/app/types/types';
 export class ArticleComponent implements OnInit {
   @Input() route: ScullyRoute;
   type: ContentType;
+
+  constructor(public themeService: ThemeService) {}
 
   ngOnInit(): void {
     const type = this.route.route.split('/')[1];

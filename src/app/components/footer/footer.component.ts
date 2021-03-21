@@ -1,4 +1,5 @@
 import { Component, Input, HostBinding } from '@angular/core';
+import { ThemeService } from '@services/theme.service';
 
 export interface FooterSection {
   title: string;
@@ -27,4 +28,6 @@ export class NizFooter {
   @HostBinding('class') get classes(): string {
     return 'block';
   }
+
+  constructor(public themeService: ThemeService) {}
 }

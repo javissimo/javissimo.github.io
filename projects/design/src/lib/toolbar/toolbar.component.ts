@@ -1,4 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
+import { ThemeService } from '@services/theme.service';
 
 @Component({
   selector: 'niz-toolbar',
@@ -9,4 +10,6 @@ export class NizToolbar {
   @HostBinding('class') get class(): string {
     return 'w-full mx-auto flex items-center justify-between';
   }
+
+  constructor(public themeService: ThemeService) {}
 }

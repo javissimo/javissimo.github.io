@@ -11,6 +11,7 @@ import { ScullyRoute } from '@scullyio/ng-lib';
 import { tap, map, switchMap, takeUntil, filter } from 'rxjs/operators';
 import { Observable, fromEvent, Subject } from 'rxjs';
 import { ScullyContentService } from 'src/app/services/scully-content.service';
+import { ThemeService } from '@services/theme.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -31,10 +32,11 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
   constructor(
     private highlightService: HighlightService,
     private content: ScullyContentService,
+    public themeService: ThemeService,
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.router.events
       .pipe(
         takeUntil(this.destroy$),
@@ -83,13 +85,13 @@ export class BlogPostComponent implements OnInit, AfterViewChecked, OnDestroy {
       );
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     if (this.allowHighlight) {
       this.highlightService.highlightAll();
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }

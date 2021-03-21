@@ -1,110 +1,139 @@
 <div class="min-h-screen flex flex-col">
-
-<niz-navbar>
-  <niz-toolbar class="px-5">
-    <div start class="flex flex-row space-x-8 items-center">
-      <a
-        class="flex items-center select-none space-x-2 rounded-md focus-ring focus:ring-inset"
-        [routerLink]="['/']"
-      >
-        <span class="text-2xl font-black"
-          >Yet another software blog</span
+  <niz-navbar>
+    <niz-toolbar class="px-5">
+      <div start class="flex flex-row space-x-8 items-center">
+        <a
+          [ngClass]="
+            themeService.theme === 'dark'
+              ? 'focus:ring-primary'
+              : 'focus:ring-secondary'
+          "
+          class="flex items-center select-none space-x-2 rounded-md focus-ring focus:ring-inset"
+          [routerLink]="['/']"
         >
-      </a>
-    </div>
+          <span
+            class="text-2xl font-black"
+            [ngClass]="
+              themeService.theme === 'dark' ? 'text-primary' : 'text-secondary'
+            "
+            >Yet another software blog</span
+          >
+        </a>
+      </div>
 
-    <div end class="flex flex-row space-x-6 items-center">
+      <div end class="flex flex-row space-x-6 items-center">
+        <button
+          [attr.aria-label]="'Open search'"
+          (click)="openSearch(search)"
+          [ngClass]="
+            themeService.theme === 'dark'
+              ? 'hover:border-primary focus:ring-primary'
+              : 'hover:border-secondary focus:ring-secondary'
+          "
+          class="hidden md:flex bg-canvas-light border-solid border-2 border-canvas-light focus-ring rounded-xl p-1 flex-row space-x-1 items-center"
+        >
+          <niz-inline-svg
+            class="h-4 w-4 theme"
+            svgSource="assets/img/search.svg"
+          ></niz-inline-svg>
+          <span class="px-2 outline-none font-semibold">
+            "<kbd>/</kbd>" to focus</span
+          >
+        </button>
+
+        <button
+          class="hidden md:flex h-6 w-6 theme rounded-full focus-ring focus:ring-offset-4 focus:ring-offset-canvas select-none"
+          [attr.aria-label]="'Toggle theme'"
+          [ngClass]="{
+            dark: themeService.theme === 'dark',
+            rotate: themeService.theme === 'dark',
+            'focus:ring-primary': themeService.theme === 'dark',
+            'focus:ring-secondary': themeService.theme !== 'dark'
+          }"
+          (click)="toggleTheme()"
+        >
+          <niz-inline-svg svgSource="assets/img/adjust.svg"></niz-inline-svg>
+        </button>
+        <button
+          (click)="menu.toggle()"
+          [attr.aria-label]="'Toggle menu'"
+          class="md:hidden h-8 w-8 focus:outline-none focus:select-none"
+        >
+          <niz-inline-svg
+            *ngIf="!menu.isOpen"
+            class="text-color"
+            svgSource="assets/img/menu.svg"
+          ></niz-inline-svg>
+          <niz-inline-svg
+            *ngIf="menu.isOpen"
+            class="text-color"
+            svgSource="assets/img/close.svg"
+          ></niz-inline-svg>
+        </button>
+      </div>
+    </niz-toolbar>
+  </niz-navbar>
+
+  <main class="pt-10 flex-1">
+    <router-outlet></router-outlet>
+  </main>
+
+  <niz-search #search></niz-search>
+  <niz-toast></niz-toast>
+
+  <niz-menu #menu>
+    <div class="h-full flex flex-col space-y-4 items-end justify-center pr-8">
+      <a
+        class="router-link"
+        [routerLink]="['/blog']"
+        [ngClass]="{
+          'router-link-active':
+            (current$ | async)?.route | startswith: '/links/',
+          'focus:ring-primary': themeService.theme === 'dark',
+          'focus:ring-secondary': themeService.theme !== 'dark'
+        }"
+        routerLinkActive="router-link-active"
+      >
+        Blog
+      </a>
       <button
-        [attr.aria-label]="'Open search'"
         (click)="openSearch(search)"
-        class="hidden md:flex bg-canvas-light border-solid border-2 border-canvas-light hover:border-primary focus-ring rounded-xl p-1 flex-row space-x-1 items-center"
+        [attr.aria-label]="'Open search'"
+        [ngClass]="
+          themeService.theme === 'dark'
+            ? 'hover:border-primary'
+            : 'hover:border-secondary'
+        "
+        class="flex bg-canvas-light border-solid border-2 border-canvas-light focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
       >
         <niz-inline-svg
           class="h-4 w-4 theme"
           svgSource="assets/img/search.svg"
         ></niz-inline-svg>
-        <span class="px-2 outline-none font-semibold">
-          "<kbd>/</kbd>" to focus</span
-        >
+        <span class="px-2 outline-none font-semibold"> Tap to focus</span>
       </button>
       <button
-        class="hidden md:flex h-6 w-6 theme rounded-full focus-ring focus:ring-offset-4 focus:ring-offset-canvas select-none"
+        (click)="toggleTheme(); $event.stopPropagation()"
         [attr.aria-label]="'Toggle theme'"
-        [ngClass]="{
-          dark: themeService.theme === 'dark',
-          rotate: themeService.theme === 'dark'
-        }"
-        (click)="toggleTheme()"
-      >
-        <niz-inline-svg svgSource="assets/img/adjust.svg"></niz-inline-svg>
-      </button>
-      <button
-        (click)="menu.toggle()"
-        [attr.aria-label]="'Toggle menu'"
-        class="md:hidden h-8 w-8 focus:outline-none focus:select-none"
+        [ngClass]="
+          themeService.theme === 'dark'
+            ? 'hover:border-primary'
+            : 'hover:border-secondary'
+        "
+        class="flex bg-canvas-light border-solid border-2 border-canvas-light focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
       >
         <niz-inline-svg
-          *ngIf="!menu.isOpen"
-          class="text-color"
-          svgSource="assets/img/menu.svg"
+          class="h-4 w-4 theme"
+          svgSource="assets/img/adjust.svg"
         ></niz-inline-svg>
-        <niz-inline-svg
-          *ngIf="menu.isOpen"
-          class="text-color"
-          svgSource="assets/img/close.svg"
-        ></niz-inline-svg>
+        <span class="px-2 outline-none font-semibold"> Toggle theme</span>
       </button>
     </div>
-  </niz-toolbar>
-</niz-navbar>
-
-<main class="pt-10 flex-1">
-  <router-outlet></router-outlet>
-</main>
-
-<niz-search #search></niz-search>
-<niz-toast></niz-toast>
-
-<niz-menu #menu>
-  <div class="h-full flex flex-col space-y-4 items-end justify-center pr-8">
-    <a
-      class="router-link"
-      [routerLink]="['/blog']"
-      [ngClass]="{
-        'router-link-active': (current$ | async)?.route | startswith: '/links/'
-      }"
-      routerLinkActive="router-link-active"
-    >
-      Blog
-    </a>
-    <button
-      (click)="openSearch(search)"
-      [attr.aria-label]="'Open search'"
-      class="flex bg-canvas-light border-solid border-2 border-canvas-light hover:border-primary focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
-    >
-      <niz-inline-svg
-        class="h-4 w-4 theme"
-        svgSource="assets/img/search.svg"
-      ></niz-inline-svg>
-      <span class="px-2 outline-none font-semibold"> Tap to focus</span>
-    </button>
-    <button
-      (click)="toggleTheme(); $event.stopPropagation()"
-      [attr.aria-label]="'Toggle theme'"
-      class="flex bg-canvas-light border-solid border-2 border-canvas-light hover:border-primary focus:outline-none rounded-xl p-1 flex-row space-x-1 items-center"
-    >
-      <niz-inline-svg
-        class="h-4 w-4 theme"
-        svgSource="assets/img/adjust.svg"
-      ></niz-inline-svg>
-      <span class="px-2 outline-none font-semibold"> Toggle theme</span>
-    </button>
-  </div>
-</niz-menu>
-<niz-footer
-  class="my-10 px-5"
-  [footerSections]="footerSections"
-  [copyleftUrl]="copyleftUrl"
-  [createdWithSvgSources]="createdWithSvgSources"
-></niz-footer>
+  </niz-menu>
+  <niz-footer
+    class="my-10 px-5"
+    [footerSections]="footerSections"
+    [copyleftUrl]="copyleftUrl"
+    [createdWithSvgSources]="createdWithSvgSources"
+  ></niz-footer>
 </div>

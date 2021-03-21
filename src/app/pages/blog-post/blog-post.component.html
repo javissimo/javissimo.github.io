@@ -6,7 +6,7 @@
         <dl>
           <div>
             <dt class="sr-only">Published at</dt>
-            <dd class="text-base leading-6 font-medium text-color-light">
+            <dd class="text-base leading-6 font-medium text-color-light mb-1">
               <time [dateTime]="route.publishedAt">
                 {{ route.publishedAt | date: 'dd MMMM yyyy' }}
               </time>
@@ -27,6 +27,7 @@
       class="grid grid-cols-1 md:grid-cols-3 md:gap-x-4 lg:grid-cols-4 lg:gap-x-6"
     >
       <div
+        [ngClass]="{ 'prose-dark': themeService.theme !== 'dark' }"
         class="prose prose-toc max-w-none md:prose-lg md:col-span-2 lg:col-span-3 text-justify"
       >
         <scully-content></scully-content>
@@ -37,6 +38,11 @@
           <div>
             <h2 class="text-xl font-semibold">Tags</h2>
             <niz-chip
+              [ngClass]="
+                themeService.theme === 'dark'
+                  ? 'hover:text-primary'
+                  : 'hover:text-secondary'
+              "
               class="mb-1 mr-1 gradient"
               *ngFor="let tag of route.tags | slice: 0:3"
               size="xl"

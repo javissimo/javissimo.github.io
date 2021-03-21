@@ -1,5 +1,6 @@
 import { Component, Input, HostBinding } from '@angular/core';
 import { Tab } from '../utils/symbols';
+import { ThemeService } from '@services/theme.service';
 
 @Component({
   selector: 'niz-tab',
@@ -10,7 +11,11 @@ export class NizTab {
   @Input() tab: Tab;
 
   @HostBinding('class') get classes(): string {
-    return `flex justify-center items-center xs:flex-1 md:flex md:h-20 md:flex-none hover:bg-primary hover:opacity-10 focus:outline-none ${
+    return `flex justify-center items-center xs:flex-1 md:flex md:h-20 md:flex-none ${
+      this.themeService.theme === 'dark'
+        ? 'hover:bg-primary'
+        : 'hover:bg-secondary'
+    } hover:opacity-10 focus:outline-none ${
       this.tab.cssClasses ? this.tab.cssClasses : ''
     }`;
   }
@@ -21,4 +26,6 @@ export class NizTab {
   @HostBinding('class.md:hidden') get hideOnDesktop(): boolean {
     return this.tab.hideOnDesktop;
   }
+
+  constructor(public themeService: ThemeService) {}
 }

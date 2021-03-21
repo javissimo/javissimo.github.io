@@ -32,8 +32,8 @@ body:not(.dark) {
 
   --gradient: linear-gradient(
     145deg,
-    theme('colors.primary.light'),
-    theme('colors.primary.DEFAULT'),
-    theme('colors.primary.dark')
+    theme('colors.secondary.light'),
+    theme('colors.secondary.DEFAULT'),
+    theme('colors.secondary.dark')
   );
 }

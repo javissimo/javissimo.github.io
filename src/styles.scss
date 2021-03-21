@@ -22,7 +22,7 @@
   }
 
   .focus-ring {
-    @apply focus:outline-none focus:ring focus:ring-primary;
+    @apply focus:outline-none focus:ring;
   }
 }
 
@@ -70,15 +70,17 @@ body {
 .token.regex,
 .token.string,
 .token.variable {
-  color: #62f296;
+  color: #24974f;
 }
 .token.class-name,
 .token.constant,
 .token.property,
 .token.symbol {
-  color: #f2df62;
+  color: #6278f2;
 }
-
+.token.punctuation {
+  color: #aaa;
+}
 .medium-zoom-overlay {
   background-color: var(--canvas) !important;
   z-index: 2;

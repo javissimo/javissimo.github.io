@@ -3,28 +3,27 @@
 }
 
 .router-link {
-  @apply relative text-lg font-semibold h-6 select-none rounded-md hover:text-primary focus:outline-none focus:ring focus:ring-primary;
+  @apply relative text-lg font-semibold h-6 select-none rounded-md  focus:outline-none focus:ring;
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    transition: width 160ms;
+  }
 }
 
 .router-link-active {
   @apply text-color-shade;
   position: relative;
-}
-
-.router-link::after {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  transition: width 160ms;
-}
-
-.router-link-active::after {
-  content: ' ';
-  position: absolute;
-  width: calc(100% - 4px);
-  height: 4px;
-  background-color: theme('colors.primary.DEFAULT');
-  left: 2px;
-  bottom: -8px;
-  border-radius: 999px;
+  &::after {
+    content: ' ';
+    position: absolute;
+    width: calc(100% - 4px);
+    height: 4px;
+    background-color: theme('colors.primary.DEFAULT');
+    left: 2px;
+    bottom: -8px;
+    border-radius: 999px;
+  }
 }

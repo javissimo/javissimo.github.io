@@ -1,4 +1,12 @@
-<a [href]="href" class="no-hover w-full rounded-full focus-ring">
+<a
+  [href]="href"
+  [ngClass]="
+    themeService.theme === 'dark'
+      ? 'focus:ring-primary'
+      : 'focus:ring-secondary'
+  "
+  class="no-hover w-full rounded-full focus-ring"
+>
   <button
     [type]="type"
     class="justify-center w-full whitespace-no-wrap focus:outline-none rounded-full items-center flex flex-row text-3xl font-semibold h-20 px-8 text-white capitalize space-x-3"

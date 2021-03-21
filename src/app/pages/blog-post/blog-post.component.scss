@@ -6,6 +6,18 @@
   width: fit-content;
 }
 
+.prose-dark {
+  a {
+    @apply text-secondary;
+    &:hover {
+      @apply text-secondary-light;
+    }
+  }
+  h2::before {
+    @apply text-secondary;
+  }
+}
+
 .post {
   margin-top: 16px;
   h2::before {
@@ -22,6 +34,7 @@
   h2:hover,
   h2:hover::before {
     visibility: visible;
+    color: black;
     background-image: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
