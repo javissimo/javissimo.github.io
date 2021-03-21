@@ -1,7 +1,6 @@
 import { SimpleAnalyticsService } from '@services/simple-analytics.service';
 import {
   Component,
-  OnInit,
   ElementRef,
   HostBinding,
   HostListener,
@@ -12,27 +11,25 @@ import {
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   private _open = false;
   constructor(
     private el: ElementRef<HTMLElement>,
     private sa: SimpleAnalyticsService
   ) {}
 
-  ngOnInit(): void {}
-
-  @HostBinding('class.open') get isOpen() {
+  @HostBinding('class.open') get isOpen(): boolean {
     return this._open;
   }
 
-  open() {
+  open(): void {
     this._open = true;
   }
-  @HostListener('click') close() {
+  @HostListener('click') close(): void {
     this._open = false;
   }
 
-  toggle() {
+  toggle(): void {
     this.sa.event('mobile_menu_toggle');
     this._open = !this._open;
   }

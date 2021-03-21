@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Tab } from '../utils/symbols';
 
 @Component({
@@ -6,10 +6,6 @@ import { Tab } from '../utils/symbols';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
 })
-export class NizTabs implements OnInit {
+export class NizTabs {
   @Input() tabs: Tab[];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -63,7 +63,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   private getBreadcrumbs(
     root: string,
     currentPage: ScullyRoute,
-    url: string = '',
+    url = '',
     breadcrumbs: Breadcrumb[] = []
   ) {
     if (root.indexOf('/') === -1) {

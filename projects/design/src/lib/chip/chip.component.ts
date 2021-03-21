@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, HostBinding, Host } from '@angular/core';
+import { Component, Input, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'niz-chip',
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
 })
-export class NizChip implements OnInit {
+export class NizChip {
   @Input() size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'md';
   @Input() shape: 'raised' | 'flat' = 'flat';
   @Input() hover = false;
@@ -22,10 +22,6 @@ export class NizChip implements OnInit {
       this.hover ? 'hover:bg-primary hover:opacity-10' : ''
     }`;
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   private get sizeStyles(): string {
     switch (this.size) {

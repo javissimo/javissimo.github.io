@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SimpleAnalyticsService {
   /**
@@ -19,7 +19,7 @@ export class SimpleAnalyticsService {
   }
 
   outboundLink(url: string): void {
-    url = url.replace(/[\/.\:]/g, '_');
+    url = url.replace(/[/.:]/g, '_');
     if ((window as any).sa_event) {
       (window as any).sa_event(`outbound_link_click_${url}`);
     }

@@ -9,13 +9,11 @@ export class ToastService {
   private _toast: Subject<ToastOptions> = new Subject();
   toast: Observable<ToastOptions> = this._toast.asObservable();
 
-  constructor() {}
-
-  show(options: ToastOptions) {
+  show(options: ToastOptions): void {
     this._toast.next(options);
   }
 
-  hide() {
+  hide(): void {
     this._toast.next(null);
   }
 }

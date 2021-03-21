@@ -52,33 +52,31 @@ export class NizInput implements ControlValueAccessor {
     }
   }
 
-  private onTouchedCallback: () => {};
-  private onChangeCallback: (_: any) => {};
+  private onTouchedCallback: () => unknown;
+  private onChangeCallback: (_: any) => unknown;
 
-  constructor() {}
-
-  writeValue(value: any) {
+  writeValue(value: any): void {
     if (value !== undefined && value !== this._value) {
       this._value = value;
     }
   }
 
-  blur(event: FocusEvent) {
+  blur(event: FocusEvent): void {
     if (this.onTouchedCallback) {
       this.onTouchedCallback();
     }
     this.nizBlur.emit(event);
   }
 
-  focus(event: FocusEvent) {
+  focus(event: FocusEvent): void {
     this.nizFocus.emit(event);
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 }

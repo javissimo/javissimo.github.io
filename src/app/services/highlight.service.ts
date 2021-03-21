@@ -21,13 +21,13 @@ import 'prismjs/components/prism-yaml';
 import './prism-prisma';
 // ... probably more, check out node_modules/prismjs/components
 
-declare var Prism: any;
+declare let Prism: any;
 
 @Injectable({ providedIn: 'root' })
 export class HighlightService {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: unknown) {}
 
-  highlightAll() {
+  highlightAll(): void {
     if (isPlatformBrowser(this.platformId)) {
       Prism.highlightAll();
     }
