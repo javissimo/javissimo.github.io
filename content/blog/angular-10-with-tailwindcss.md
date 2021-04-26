@@ -1,7 +1,7 @@
 ---
 title: Writing a Selenium framework step by step
 description: Learn how to style Angular applications with Tailwind CSS
-published: true
+published: false
 publishedAt: 2020-07-13T08:55:00.000Z
 updatedAt: 2020-07-14T16:50:00.000Z
 tags:
