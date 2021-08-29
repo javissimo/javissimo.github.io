@@ -19,7 +19,7 @@
     "test": "ng test",
     "dev": "npm run build && npm run serve:scully",
     "build:scully": "npm run build:prod && npm run scully",
-    "build:design": "ng build --project design --prod",
+    "build:design": "ng build --project design --configuration production",
     "build:shortcodes": "ng build --configuration production --project shortcodes --single-bundle --output-hashing none",
     "fix": "eslint . --ext .ts --quiet --fix",
     "lint": "eslint . --ext .ts",
@@ -56,10 +56,10 @@
     "zone.js": "0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1200.5",
-    "@angular-devkit/build-angular": "12.0.5",
+    "@angular-devkit/architect": "0.1202.3",
+    "@angular-devkit/build-angular": "12.2.3",
     "@angular-eslint/eslint-plugin": "12.1.0",
-    "@angular/cli": "12.0.5",
+    "@angular/cli": "12.2.3",
     "@angular/compiler-cli": "12.0.5",
     "@angular/language-service": "12.0.5",
     "@gammastream/scully-plugin-sitemap": "1.0.7",
