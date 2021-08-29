@@ -92,7 +92,7 @@
     "karma-jasmine": "4.0.1",
     "karma-jasmine-html-reporter": "1.6.0",
     "ng-packagr": "12.0.6",
-    "ngx-build-plus": "^12.0.1",
+    "ngx-build-plus": "^12.2.0",
     "prettier": "2.3.1",
     "stylelint-config-recommended": "5.0.0",
     "tailwindcss": "2.0.4",
