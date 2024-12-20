@@ -76,7 +76,7 @@ const siteConfig: SiteConfig = {
         },
         {
             text: 'Photos',
-            href: '/photos'
+            href: '/gallery'
         },
         {
             text: 'Blog',
