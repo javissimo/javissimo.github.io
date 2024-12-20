@@ -14,6 +14,7 @@ export type Link = {
     text: string;
     href: Url;
     icon?: IconName;
+    enabled?: boolean;
 };
 
 export type Hero = {
@@ -72,15 +73,18 @@ const siteConfig: SiteConfig = {
     headerNavLinks: [
         {
             text: 'Home',
-            href: '/'
+            href: '/',
+            enabled: true
         },
         {
             text: 'Photos',
-            href: '/gallery'
+            href: '/gallery',
+            enabled: true
         },
         {
             text: 'Blog',
-            href: '/blog'
+            href: '/blog',
+            enabled: false
         }
     ],
     footerNavLinks: [
