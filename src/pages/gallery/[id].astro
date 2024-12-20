@@ -38,7 +38,7 @@ const images = await getAlbumImages(album.id);
                         alt={`Image from ${album.data.title} album`}
                         format="webp"
                         quality={75}
-                        class="rounded mb-6 border hover:opacity-85 border-transparent transition-all duration-300 ease-in-out hover:shadow-lg cursor-pointer w-full"
+                        class="rounded mb-6 border hover:opacity-85 border-transparent transition-all duration-300 ease-in-out hover:shadow-lg md:cursor-pointer w-full"
                         loading="lazy"
                         data-album-image
                     />
@@ -58,10 +58,19 @@ const images = await getAlbumImages(album.id);
 </BaseLayout>
 
 <script>
-    // Add click listeners to all gallery images
-    document.querySelectorAll('[data-album-image]').forEach((img) => {
-        img.addEventListener('click', () => openModal(img.src));
-    });
+    const DESKTOP_MIN_WIDTH = 1024;
+
+    if (window.innerWidth >= DESKTOP_MIN_WIDTH) {
+        document.querySelectorAll('[data-album-image]').forEach((img) => {
+            img.addEventListener('click', () => openModal(img.src));
+        });
+    }
+
+    if (window.innerWidth < DESKTOP_MIN_WIDTH) {
+        document.querySelectorAll('[data-album-image]').forEach((img) => {
+            img.classList.remove('cursor-pointer');
+        });
+    }
 
     function openModal(imageSrc) {
         const modal = document.getElementById('imageModal');
@@ -79,9 +88,7 @@ const images = await getAlbumImages(album.id);
         document.body.style.overflow = 'auto';
     }
 
-    // Handle modal clicks
     const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
