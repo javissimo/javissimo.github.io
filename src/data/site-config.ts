@@ -30,7 +30,7 @@ export type Subscribe = {
 };
 
 // Add constants for pagination
-const DEFAULT_ITEMS_PER_PAGE = 8;
+const DEFAULT_ITEMS_PER_PAGE = 5;
 
 // Add supported social media platforms
 export const SUPPORTED_SOCIALS = ['github', 'linkedin', 'lastfm', 'spotify'] as const;
