@@ -41,10 +41,10 @@ const hasContent = title || image?.src || text || actions.length > 0;
                 </figure>
             )}
 
-            {parsedText && <div class="max-w-none prose prose-dante sm:prose-lg" set:html={parsedText} />}
+            {parsedText && <div class="max-w-none prose prose-dante sm:prose-lg text-center" set:html={parsedText} />}
 
             {actions.length > 0 && (
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-wrap gap-4 justify-center">
                     {actions.map(({ href, text }) => (
                         <Button href={href}>{text}</Button>
                     ))}

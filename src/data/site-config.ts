@@ -75,8 +75,8 @@ const siteConfig: SiteConfig = {
     ],
     socialLinks: [
         {
-            text: 'Dribbble',
-            href: 'https://dribbble.com/'
+            text: 'Last.fm',
+            href: 'https://last.fm/user/javissimo'
         },
         {
             text: 'Instagram',
