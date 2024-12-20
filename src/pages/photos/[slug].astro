@@ -5,19 +5,19 @@ import ProjectPreview from '../../components/ProjectPreview.astro';
 import { sortItemsByDateDesc } from '../../utils/data-utils';
 
 export async function getStaticPaths() {
-    const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
-    const projectCount = projects.length;
-    return projects.map((project, index) => ({
+    const photos = (await getCollection('photos')).sort(sortItemsByDateDesc);
+    const projectCount = photos.length;
+    return photos.map((project, index) => ({
         params: { slug: project.slug },
         props: {
             project,
-            prevProject: index + 1 !== projectCount ? projects[index + 1] : null,
-            nextProject: index !== 0 ? projects[index - 1] : null
+            prevProject: index + 1 !== projectCount ? photos[index + 1] : null,
+            nextProject: index !== 0 ? photos[index - 1] : null
         }
     }));
 }
 
-type Props = { project: CollectionEntry<'projects'>; prevProject: CollectionEntry<'projects'>; nextProject: CollectionEntry<'projects'> };
+type Props = { project: CollectionEntry<'photos'>; prevProject: CollectionEntry<'photos'>; nextProject: CollectionEntry<'photos'> };
 
 const { project, prevProject, nextProject } = Astro.props;
 const { title, description, seo } = project.data;

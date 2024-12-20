@@ -31,7 +31,7 @@ const pages = defineCollection({
     })
 });
 
-const projects = defineCollection({
+const photos = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string().optional(),
@@ -41,4 +41,4 @@ const projects = defineCollection({
     })
 });
 
-export const collections = { blog, pages, projects };
+export const collections = { blog, pages, photos };

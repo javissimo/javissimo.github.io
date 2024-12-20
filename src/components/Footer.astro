@@ -1,5 +1,6 @@
 ---
 import siteConfig from '../data/site-config';
+import { Icon } from 'astro-icon/components';
 
 const socialLinks = siteConfig.socialLinks || [];
 const navLinks = siteConfig.footerNavLinks || [];
@@ -33,6 +34,7 @@ const navLinks = siteConfig.footerNavLinks || [];
                             target="_blank"
                             rel="noopener noreferer"
                         >
+                            {link.icon && <Icon name={link.icon} class="w-4 h-4 mr-2" />}
                             {link.text}
                         </a>
                     ))}

@@ -8,11 +8,10 @@ import siteConfig from '../../data/site-config';
 import { sortItemsByDateDesc } from '../../utils/data-utils';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
-    return paginate(projects, { pageSize: siteConfig.projectsPerPage || 6 });
+    return paginate((await getCollection('photos')).sort(sortItemsByDateDesc), { pageSize: siteConfig.projectsPerPage || 6 });
 }
 
-type Props = { page: Page<CollectionEntry<'projects'>> };
+type Props = { page: Page<CollectionEntry<'photos'>> };
 
 const { page } = Astro.props;
 const portfolio = page.data;

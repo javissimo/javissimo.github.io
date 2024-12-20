@@ -7,6 +7,7 @@ export type Image = {
 export type Link = {
     text: string;
     href: string;
+    icon?: string;
 };
 
 export type Hero = {
@@ -51,16 +52,12 @@ const siteConfig: SiteConfig = {
             href: '/'
         },
         {
-            text: 'Projects',
-            href: '/projects'
+            text: 'Photos',
+            href: '/photos'
         },
         {
             text: 'Blog',
             href: '/blog'
-        },
-        {
-            text: 'Tags',
-            href: '/tags'
         }
     ],
     footerNavLinks: [
@@ -76,15 +73,18 @@ const siteConfig: SiteConfig = {
     socialLinks: [
         {
             text: 'Last.fm',
-            href: 'https://last.fm/user/javissimo'
+            href: 'https://last.fm/user/javissimo',
+            icon: 'mdi:lastfm'
         },
         {
-            text: 'Instagram',
-            href: 'https://instagram.com/'
+            text: 'LinkedIn',
+            href: 'https://www.linkedin.com/in/javier-serrano-garc%C3%ADa-940412194/',
+            icon: 'mdi:linkedin'
         },
         {
-            text: 'X/Twitter',
-            href: 'https://twitter.com/'
+            text: 'Spotify',
+            href: 'https://open.spotify.com/user/javissimo',
+            icon: 'mdi:spotify'
         }
     ],
     hero: {
