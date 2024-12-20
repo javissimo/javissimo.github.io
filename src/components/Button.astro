@@ -17,7 +17,7 @@ type Props = ButtonProps | AnchorProps;
 
 const { href, class: className, variant = 'primary', ...rest } = Astro.props;
 
-const baseClasses = 'inline-flex items-center justify-center px-6 py-2 font-serif text-sm leading-tight italic rounded-full transition';
+const baseClasses = 'inline-flex items-center justify-center px-6 py-2 pt-2.5 font-serif text-sm leading-none italic rounded-full transition text-center';
 
 const variantClasses = {
     primary: 'text-main bg-main border border-main hover:bg-muted',
