@@ -11,7 +11,7 @@
     }
     html.dark {
         --color-text-main: 226 223 210; /* #E2DFD2 */
-        --color-bg-main: 28 31 23; /* #1C1F17 */
+        --color-bg-main: 20 22 17; /* #141611 */
         --color-bg-muted: 23 28 14; /* #171C0E */
         --color-border-main: 226 223 210; /* #E2DFD2 */
     }
