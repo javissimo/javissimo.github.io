@@ -1,49 +1,67 @@
----
-
----
-
-<button id="theme-toggle" class="w-8 h-8 -mr-2 flex items-center justify-center" aria-label="Change color scheme">
-    <svg class="w-4 h-4 fill-current" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+<button id="theme-toggle" class="w-8 h-8 -mr-2 flex items-center justify-center" aria-label="Toggle color theme" aria-pressed="false">
+    <svg class="w-4 h-4 fill-current transition-transform duration-300" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="8" cy="8" r="8"></circle>
     </svg>
 </button>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const theme = (() => {
-            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-                return localStorage.getItem('theme') || 'light';
-            }
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                return 'dark';
-            }
-            return 'light';
-        })();
+    const getTheme = (): 'light' | 'dark' => {
+        const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+        if (typeof localStorage !== 'undefined' && storedTheme) return storedTheme;
 
-        if (theme === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.add('dark');
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    const applyTheme = (theme: 'light' | 'dark') => {
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('theme', theme);
+
+        // Update button state
+        const button = document.getElementById('theme-toggle');
+        if (button) {
+            button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
         }
+    };
 
-        window.localStorage.setItem('theme', theme);
+    // Initialize theme
+    const initializeTheme = () => {
+        const theme = getTheme();
+        applyTheme(theme);
 
-        const handleToggleClick = () => {
-            const element = document.documentElement;
-            element.classList.toggle('dark');
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    };
 
-            const isDark = element.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        };
+    // Toggle theme handler
+    const handleToggleClick = () => applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
 
+    // Event listeners
+    document.addEventListener('astro:page-load', () => {
+        initializeTheme();
         document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick);
     });
-</script>
 
-<script>
-    document.addEventListener('astro:after-swap', () => {
-        if (localStorage.theme === 'dark') {
-            document.documentElement.classList.add('dark');
-        }
+    // Cleanup
+    document.addEventListener('astro:before-swap', () => {
+        document.getElementById('theme-toggle')?.removeEventListener('click', handleToggleClick);
     });
 </script>
+
+<style>
+    #theme-toggle svg {
+        transform-origin: center;
+    }
+
+    #theme-toggle:hover svg {
+        transform: scale(1.1);
+    }
+
+    #theme-toggle:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+        border-radius: 50%;
+    }
+</style>
