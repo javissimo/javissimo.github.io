@@ -1,23 +1,38 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-type AnchorProps = HTMLAttributes<'a'> & { type?: never };
-type ButtonProps = HTMLAttributes<'button'> & { href?: never };
+type ButtonVariant = 'primary' | 'secondary' | 'outline';
+
+type AnchorProps = HTMLAttributes<'a'> & {
+    type?: never;
+    variant?: ButtonVariant;
+};
+
+type ButtonProps = HTMLAttributes<'button'> & {
+    href?: never;
+    variant?: ButtonVariant;
+};
 
 type Props = ButtonProps | AnchorProps;
 
-const { href, class: className, ...rest } = Astro.props;
-const buttonClasses =
-    'inline-flex items-center justify-center px-6 py-2 font-serif text-sm leading-tight italic  text-main bg-main border border-main rounded-full transition hover:bg-muted';
+const { href, class: className, variant = 'primary', ...rest } = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center px-6 py-2 font-serif text-sm leading-tight italic rounded-full transition';
+
+const variantClasses = {
+    primary: 'text-main bg-main border border-main hover:bg-muted',
+    secondary: 'text-muted bg-transparent border border-muted hover:bg-muted/10',
+    outline: 'text-main bg-transparent border border-main hover:bg-main/10'
+};
 ---
 
 {
     href ? (
-        <a href={href} class:list={[buttonClasses, className]} {...rest}>
+        <a href={href} class:list={[baseClasses, variantClasses[variant], className]} {...rest}>
             <slot />
         </a>
     ) : (
-        <button class:list={[buttonClasses, className]} {...rest}>
+        <button class:list={[baseClasses, variantClasses[variant], className]} {...rest}>
             <slot />
         </button>
     )
